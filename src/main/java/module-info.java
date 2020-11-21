@@ -2,6 +2,9 @@ module org.example {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens org.example to javafx.fxml;
-    exports org.example;
+    opens View to javafx.fxml;
+    exports View;
+
+    opens Controller to javafx.fxml;
+    exports Controller;
 }
