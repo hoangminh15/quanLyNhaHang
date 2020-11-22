@@ -36,13 +36,13 @@ public class MenuAccessor extends DataAccessor{
         menuSet.setDonGia(Integer.parseInt(rs.getString("donGia")));
         menuSet.setKhaiVi(rs.getString("khaiVi"));
         menuSet.setMonChinh(rs.getString("monChinh"));
-        menuSet.setMonChinh(rs.getString("trangMieng"));
+        menuSet.setTrangmieng(rs.getString("trangMieng"));
         return menuSet;
     }
 
-    public List<String> layDanhSach(){
-        String sql = "SELECT * FROM NhaHang.Menu";
-        String idMenu;
+    public ArrayList<String> layDanhSach(){
+        String sql = "SELECT idMenu FROM NhaHang.Menu";
+        idMenuList = new ArrayList<>();
         try {
             rs = statement.executeQuery(sql);
             while(rs.next()){

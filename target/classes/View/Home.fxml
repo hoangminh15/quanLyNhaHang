@@ -4,10 +4,9 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.shape.Line?>
@@ -22,63 +21,87 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <MenuBar layoutX="993.0" layoutY="40.0">
-              <menus>
-                <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Edit">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Delete" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
          </children>
       </AnchorPane>
    </top>
-   <left>
-      <AnchorPane prefHeight="648.0" prefWidth="306.0" BorderPane.alignment="CENTER">
+   <center>
+      <AnchorPane prefHeight="655.0" prefWidth="1045.0" BorderPane.alignment="CENTER">
          <children>
             <Line endX="115.0" endY="-143.0" layoutX="190.0" layoutY="161.0" opacity="0.23" startX="115.0" startY="493.0" />
-            <Label layoutX="43.0" layoutY="33.0" text="THÔNG TIN ĐƠN HÀNG">
+            <Label layoutX="43.0" layoutY="33.0" text="THÔNG TIN HỢP ĐỒNG">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="14.0" layoutY="121.0" text="Sảnh:" />
-            <ComboBox fx:id="maSanhCB" layoutX="82.0" layoutY="116.0" prefWidth="150.0" />
+            <Label layoutX="14.0" layoutY="242.0" text="Sảnh:" />
+            <ComboBox fx:id="maSanhCB" layoutX="91.0" layoutY="237.0" onAction="#xemSanh" prefWidth="150.0" />
             <Label layoutX="19.0" layoutY="360.0" text="Số bàn:" />
-            <TextField fx:id="soBanText" layoutX="114.0" layoutY="355.0" prefHeight="26.0" prefWidth="47.0" />
-            <Label layoutX="24.0" layoutY="167.0" text="Ngày:" />
-            <DatePicker fx:id="thoiGianDP" layoutX="88.0" layoutY="162.0" />
-            <Label layoutX="14.0" layoutY="213.0" text="Thời điểm:" />
-            <ComboBox fx:id="thoiDiemCB" layoutX="91.0" layoutY="208.0" prefWidth="150.0" />
-            <Label layoutX="14.0" layoutY="85.0" text="1. THÔNG TIN SẢNH" />
+            <TextField fx:id="soBanText" layoutX="114.0" layoutY="355.0" onKeyTyped="#dienSoBan" prefHeight="26.0" prefWidth="47.0" />
+            <Label layoutX="13.0" layoutY="105.0" text="Ngày tổ chức: " />
+            <DatePicker fx:id="thoiGianDP" layoutX="124.0" layoutY="100.0" onAction="#chonNgay" prefHeight="26.0" prefWidth="159.0" />
+            <Label layoutX="24.0" layoutY="154.0" text="Thời điểm:" />
+            <ComboBox fx:id="thoiDiemCB" layoutX="101.0" layoutY="149.0" onAction="#chonThoiDiem" prefWidth="150.0" />
+            <Label layoutX="14.0" layoutY="206.0" text="1. THÔNG TIN SẢNH" />
             <Label layoutX="17.0" layoutY="290.0" text="2. MENU" />
-            <Label layoutX="16.0" layoutY="322.0" text="Menu:" />
-            <ComboBox fx:id="menuCB" layoutX="109.0" layoutY="317.0" prefWidth="150.0" />
+            <Label layoutX="16.0" layoutY="322.0" text="Menu số: " />
+            <ComboBox fx:id="menuCB" layoutX="115.0" layoutY="317.0" onAction="#xemMenu" prefHeight="26.0" prefWidth="84.0" />
             <Label layoutX="23.0" layoutY="444.0" text="3. DỊCH VỤ" />
-            <Label layoutX="206.0" layoutY="414.0" text="Giá:" />
-            <Label layoutX="242.0" layoutY="414.0" prefHeight="16.0" prefWidth="49.0" text=".000d" />
-            <Label layoutX="206.0" layoutY="258.0" text="Giá:" />
-            <Label layoutX="242.0" layoutY="258.0" prefHeight="16.0" prefWidth="49.0" text=".000d" />
+            <Label layoutX="582.0" layoutY="205.0" text="Giá:" />
+            <Label layoutX="764.0" layoutY="205.0" prefHeight="16.0" prefWidth="49.0" text="đồng" />
             <Label layoutX="206.0" layoutY="496.0" text="Giá:" />
             <Label layoutX="242.0" layoutY="496.0" prefHeight="16.0" prefWidth="49.0" text=".000d" />
-            <Button layoutX="94.0" layoutY="583.0" mnemonicParsing="false" text="In hóa đơn" />
-            <Button layoutX="80.0" layoutY="545.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" text="Xem hóa đơn" />
+            <Button layoutX="88.0" layoutY="583.0" mnemonicParsing="false" text="In hợp đồng" />
+            <Button layoutX="86.0" layoutY="545.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" text="Thành tiền" />
             <Button layoutX="24.0" layoutY="470.0" mnemonicParsing="false" text="Xem danh sách dịch vụ" fx:id="xemDichVuButton" />
             <Label layoutX="15.0" layoutY="392.0" text="Số khách/bàn:" />
-            <TextField fx:id="soKhachMotBanText" layoutX="114.0" layoutY="387.0" prefHeight="26.0" prefWidth="47.0" />
+            <TextField fx:id="soKhachMotBanText" layoutX="114.0" layoutY="387.0" onKeyTyped="#dienSoKhach" prefHeight="26.0" prefWidth="47.0" />
             <Line endX="1370.0" layoutX="-223.0" layoutY="15.0" opacity="0.21" startX="-221.0" />
+            <Label layoutX="329.0" layoutY="76.0" text="Sảnh đã chọn:" />
+            <Label layoutX="335.0" layoutY="113.0" text="Mã sảnh:" />
+            <Label fx:id="maSanh" layoutX="409.0" layoutY="113.0" text="x" />
+            <Label layoutX="329.0" layoutY="154.0" text="Sức chứa: " />
+            <Label fx:id="sucChua" layoutX="410.0" layoutY="154.0" text="y" />
+            <Label layoutX="438.0" layoutY="155.0" text="bàn " />
+            <Label layoutX="330.0" layoutY="35.0" text="Ngày tổ chức: " />
+            <Label layoutX="429.0" layoutY="35.0" text="20/11/2020" />
+            <Label layoutX="595.0" layoutY="35.0" text="Thời điểm: " />
+            <ImageView fx:id="imageView" fitHeight="123.0" fitWidth="219.0" layoutX="578.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@sanh1.jpg" />
+               </image>
+            </ImageView>
+            <Line endX="-79.5" endY="562.0" layoutX="958.0" layoutY="76.0" opacity="0.21" startX="-79.5" startY="-60.5" />
+            <Label layoutX="890.0" layoutY="45.0" text="Nhân viên: " />
+            <Label layoutX="897.0" layoutY="122.0" text="Tên khách hàng: " />
+            <Label layoutX="901.0" layoutY="183.0" text="Địa chỉ: " />
+            <Label layoutX="901.0" layoutY="249.0" text="Điện thoại:" />
+            <Label layoutX="897.0" layoutY="319.0" text="Ngày lập đơn: " />
+            <Label fx:id="ngayLapDon" layoutX="894.0" layoutY="347.0" text="Ngày hiện tại" />
+            <Label layoutX="325.0" layoutY="249.0" text="Menu đã chọn:" />
+            <Label layoutX="431.0" layoutY="249.0" text="Menu số 1" />
+            <Label layoutX="354.0" layoutY="282.0" text="Khai vị:" />
+            <Label layoutX="329.0" layoutY="330.0" text="Món chính:" />
+            <Label layoutX="317.0" layoutY="408.0" text="Tráng miệng:" />
+            <Label layoutX="323.0" layoutY="488.0" text="Dịch vụ đã chọn:" />
+            <Label fx:id="khaiVi" layoutX="431.0" layoutY="282.0" text="..." />
+            <Label fx:id="monChinh" layoutX="431.0" layoutY="330.0" text="..." />
+            <Label fx:id="trangMieng" layoutX="425.0" layoutY="408.0" text="..." />
+            <TextField layoutX="890.0" layoutY="72.0" prefHeight="26.0" prefWidth="245.0" />
+            <TextField layoutX="890.0" layoutY="149.0" prefHeight="26.0" prefWidth="245.0" />
+            <TextField layoutX="888.0" layoutY="208.0" prefHeight="26.0" prefWidth="245.0" />
+            <TextField layoutX="890.0" layoutY="269.0" prefHeight="26.0" prefWidth="245.0" />
+            <Label fx:id="giaSanh" layoutX="670.0" layoutY="205.0" text="..." />
+            <Label layoutX="551.0" layoutY="441.0" text="Giá:" />
+            <Label layoutX="707.0" layoutY="441.0" prefHeight="16.0" prefWidth="108.0" text="đồng / khách" />
+            <Label fx:id="giaMenu" layoutX="639.0" layoutY="441.0" text="..." />
+            <Label layoutX="551.0" layoutY="601.0" text="Giá:" />
+            <Label layoutX="733.0" layoutY="601.0" prefHeight="16.0" prefWidth="49.0" text="đồng" />
+            <Label fx:id="giaDichVu" layoutX="639.0" layoutY="601.0" text="..." />
+            <Label fx:id="thoiDiemText" layoutX="689.0" layoutY="34.0" text="..." />
+            <Label layoutX="551.0" layoutY="467.0" text="Tổng" />
+            <Label layoutX="707.0" layoutY="467.0" prefHeight="16.0" prefWidth="108.0" text="đồng" />
+            <Label fx:id="tongTienAn" layoutX="639.0" layoutY="467.0" text="..." />
          </children>
       </AnchorPane>
-   </left>
+   </center>
 </BorderPane>

@@ -37,5 +37,5 @@ public abstract class DataAccessor {
     public abstract Data getFromResultSet(ResultSet rs) throws Exception;
 
     //Method de lay danh sach cac data object(Khong day du thong tin)
-    public abstract List<String> layDanhSach() throws Exception;
+    public abstract List<String> layDanhSach();
 }

@@ -27,8 +27,8 @@ public class DichVuAccessor extends DataAccessor{
     }
 
     public List<String> layDanhSach(){
-        String sql = "SELECT * FROM NhaHang.DichVu";
-        String idDichVu;
+        String sql = "SELECT idDichVu FROM NhaHang.DichVu";
+        idDichVuList = new ArrayList<>();
         try {
             rs = statement.executeQuery(sql);
             while(rs.next()){

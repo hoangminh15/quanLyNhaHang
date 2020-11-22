@@ -1,11 +1,9 @@
 package DataAccessor;
 
-import Model.Data;
 import Model.Sanh;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SanhAccessor extends DataAccessor{
     Sanh sanh;
@@ -36,18 +34,19 @@ public class SanhAccessor extends DataAccessor{
         sanhSet.setIdSanh(Integer.parseInt(rs.getString("idSanh")));
         sanhSet.setDonGia(Integer.parseInt(rs.getString("donGia")));
         sanhSet.setMaSanh(rs.getString("maSanh"));
-        sanhSet.setDonGia(Integer.parseInt(rs.getString("sucChua")));
+        sanhSet.setSucChua(Integer.parseInt(rs.getString("sucChua")));
+        sanhSet.setImageLink(rs.getString("imageLink"));
         return sanhSet;
     }
 
     @Override
-    public ArrayList<String> layDanhSach() throws Exception {
-        String sql = "SELECT * FROM NhaHang.Sanh";
-        String maSanh;
+    public ArrayList<String> layDanhSach(){
+        String sql = "SELECT maSanh FROM NhaHang.Sanh";
+        maSanhList = new ArrayList<String>();
         try{
             rs = statement.executeQuery(sql);
             while(rs.next()){
-                maSanhList.add(rs.getString("idDichVu"));
+                maSanhList.add(rs.getString("maSanh"));
             }
         } catch(Exception ex){
             ex.printStackTrace();
