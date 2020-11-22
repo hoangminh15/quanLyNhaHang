@@ -16,7 +16,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         Scene scene = new Scene(root);
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        stage.setTitle("Ứng dụng quản lý nhà hàng");
+        stage.setTitle("Ứng dụng quản lý nhà hàng tiệc cưới");
         stage.setScene(scene);
         stage.show();
     }

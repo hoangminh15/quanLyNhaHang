@@ -1,14 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="Controller.HomeController"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="694.0" prefWidth="1147.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HomeController">
+   <top>
+      <AnchorPane prefHeight="61.0" prefWidth="1186.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="385.0" layoutY="18.0" text="ỨNG DỤNG QUẢN LÝ NHÀ HÀNG TIỆC CƯỚI">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <MenuBar layoutX="993.0" layoutY="40.0">
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Edit">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </AnchorPane>
+   </top>
+   <left>
+      <AnchorPane prefHeight="648.0" prefWidth="306.0" BorderPane.alignment="CENTER">
+         <children>
+            <Line endX="115.0" endY="-143.0" layoutX="190.0" layoutY="161.0" opacity="0.23" startX="115.0" startY="493.0" />
+            <Label layoutX="43.0" layoutY="33.0" text="THÔNG TIN ĐƠN HÀNG">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="14.0" layoutY="121.0" text="Sảnh:" />
+            <ComboBox fx:id="maSanhCB" layoutX="82.0" layoutY="116.0" prefWidth="150.0" />
+            <Label layoutX="19.0" layoutY="360.0" text="Số bàn:" />
+            <TextField fx:id="soBanText" layoutX="114.0" layoutY="355.0" prefHeight="26.0" prefWidth="47.0" />
+            <Label layoutX="24.0" layoutY="167.0" text="Ngày:" />
+            <DatePicker fx:id="thoiGianDP" layoutX="88.0" layoutY="162.0" />
+            <Label layoutX="14.0" layoutY="213.0" text="Thời điểm:" />
+            <ComboBox fx:id="thoiDiemCB" layoutX="91.0" layoutY="208.0" prefWidth="150.0" />
+            <Label layoutX="14.0" layoutY="85.0" text="1. THÔNG TIN SẢNH" />
+            <Label layoutX="17.0" layoutY="290.0" text="2. MENU" />
+            <Label layoutX="16.0" layoutY="322.0" text="Menu:" />
+            <ComboBox fx:id="menuCB" layoutX="109.0" layoutY="317.0" prefWidth="150.0" />
+            <Label layoutX="23.0" layoutY="444.0" text="3. DỊCH VỤ" />
+            <Label layoutX="206.0" layoutY="414.0" text="Giá:" />
+            <Label layoutX="242.0" layoutY="414.0" prefHeight="16.0" prefWidth="49.0" text=".000d" />
+            <Label layoutX="206.0" layoutY="258.0" text="Giá:" />
+            <Label layoutX="242.0" layoutY="258.0" prefHeight="16.0" prefWidth="49.0" text=".000d" />
+            <Label layoutX="206.0" layoutY="496.0" text="Giá:" />
+            <Label layoutX="242.0" layoutY="496.0" prefHeight="16.0" prefWidth="49.0" text=".000d" />
+            <Button layoutX="94.0" layoutY="583.0" mnemonicParsing="false" text="In hóa đơn" />
+            <Button layoutX="80.0" layoutY="545.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="114.0" text="Xem hóa đơn" />
+            <Button layoutX="24.0" layoutY="470.0" mnemonicParsing="false" text="Xem danh sách dịch vụ" fx:id="xemDichVuButton" />
+            <Label layoutX="15.0" layoutY="392.0" text="Số khách/bàn:" />
+            <TextField fx:id="soKhachMotBanText" layoutX="114.0" layoutY="387.0" prefHeight="26.0" prefWidth="47.0" />
+            <Line endX="1370.0" layoutX="-223.0" layoutY="15.0" opacity="0.21" startX="-221.0" />
+         </children>
+      </AnchorPane>
+   </left>
+</BorderPane>
