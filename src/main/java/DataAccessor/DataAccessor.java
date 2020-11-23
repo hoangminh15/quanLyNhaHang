@@ -38,4 +38,6 @@ public abstract class DataAccessor {
 
     //Method de lay danh sach cac data object(Khong day du thong tin)
     public abstract List<String> layDanhSach();
+
+    public abstract void them(Data data);
 }

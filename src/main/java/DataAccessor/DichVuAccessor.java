@@ -1,5 +1,6 @@
 package DataAccessor;
 
+import Model.Data;
 import Model.DichVu;
 import java.sql.*;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class DichVuAccessor extends DataAccessor{
         return dichVu;
     }
 
-    public List<String> layDanhSach(){
+    public ArrayList<String> layDanhSach(){
         String sql = "SELECT idDichVu FROM NhaHang.DichVu";
         idDichVuList = new ArrayList<>();
         try {
@@ -38,6 +39,15 @@ public class DichVuAccessor extends DataAccessor{
             ex.printStackTrace();
         }
         return idDichVuList;
+    }
+
+    @Override
+    public void them(DichVu dichVu) {
+        int idDichVu = dichVu.getIdDichVu();
+        String tenDichVu = dichVu.getTenDichVu();
+        int donGia = dichVu.getDonGia();
+        String sql = "INSERT INTO NhaHang.DichVu VALUES ('" + idDichVu + "', '" + tenDichVu + "', '" + donGia + "')";
+
     }
 
     @Override
