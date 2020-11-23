@@ -1,6 +1,6 @@
 package Model;
 
-public class Menu implements Data{
+public class Menu extends Data{
     private int idMenu;
     private String khaiVi;
     private String monChinh;

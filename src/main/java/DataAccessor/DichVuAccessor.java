@@ -4,9 +4,8 @@ import Model.Data;
 import Model.DichVu;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
-public class DichVuAccessor extends DataAccessor{
+public class DichVuAccessor extends DataAccessor implements iDataController{
     DichVu dichVu;
     ArrayList<String> idDichVuList;
 
@@ -42,12 +41,30 @@ public class DichVuAccessor extends DataAccessor{
     }
 
     @Override
-    public void them(DichVu dichVu) {
-        int idDichVu = dichVu.getIdDichVu();
-        String tenDichVu = dichVu.getTenDichVu();
+    public void them(Data dichVuData) {
+        //Cast back to DichVu
+        DichVu dichVuObject = (DichVu) dichVuData;
+        int idDichVu = dichVuObject.getIdDichVu();
+        String tenDichVu = dichVuObject.getTenDichVu();
         int donGia = dichVu.getDonGia();
         String sql = "INSERT INTO NhaHang.DichVu VALUES ('" + idDichVu + "', '" + tenDichVu + "', '" + donGia + "')";
+        try{
+            statement.executeUpdate(sql);
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 
+    @Override
+    public void xoa(Data dichVuData) {
+        DichVu dichVuObject = (DichVu) dichVuData;
+        int idDichVu = dichVuObject.getIdDichVu();
+        String sql = "DELETE FROM NhaHang.DichVu WHERE idDichVu = '" + idDichVu + "'";
+        try {
+            statement.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     @Override

@@ -6,9 +6,6 @@ import DataAccessor.SanhAccessor;
 import Helper.DateValidator;
 import Model.Menu;
 import Model.Sanh;
-import javafx.beans.binding.Bindings;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -19,11 +16,9 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
-import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.text.DateFormat;
@@ -33,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
 
-public class HomeController implements Initializable {
+public class HomeController extends Controller implements Initializable {
 
     @FXML
     ComboBox<String> maSanhCB;
@@ -73,7 +68,14 @@ public class HomeController implements Initializable {
     Label ngayLapDon;
     @FXML
     Label tongTienAn;
-
+    @FXML
+    Label dichVuDaChon;
+    @FXML
+    Label dichVuDaChon2;
+    @FXML
+    Label dichVuDaChon3;
+    @FXML
+    Label soMenu;
 
     SanhAccessor sanhAccessor;
     MenuAccessor menuAccessor;
@@ -103,6 +105,12 @@ public class HomeController implements Initializable {
         //Set max width cho mon chinh tranh tràn textk
         monChinh.setMaxWidth(400);
         monChinh.setWrapText(true);
+        dichVuDaChon.setMaxWidth(300);
+        dichVuDaChon.setWrapText(true);
+        dichVuDaChon2.setMaxWidth(300);
+        dichVuDaChon2.setWrapText(true);
+        dichVuDaChon3.setMaxWidth(300);
+        dichVuDaChon3.setWrapText(true);
 
         ObservableList<String> thoiDiemList = FXCollections.observableArrayList("Sáng", "Chiều", "Tối");
         thoiDiemCB.setItems(thoiDiemList);
@@ -119,6 +127,7 @@ public class HomeController implements Initializable {
         khaiVi.setText(menu.getKhaiVi());
         monChinh.setText(menu.getMonChinh());
         trangMieng.setText(menu.getTrangmieng());
+        soMenu.setText(String.valueOf(menu.getIdMenu()));
 
         String donGiaMenuOutput = myFormatter.format(donGiaMenu);
         giaMenu.setText(donGiaMenuOutput);
@@ -191,13 +200,46 @@ public class HomeController implements Initializable {
     }
 
     public void changeSceneDichVu(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        Stage stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/DichVuPage.fxml"));
+        loader.setLocation(getClass().getResource("/View/DichVu.fxml"));
         Parent dichVuViewParent = loader.load();
         Scene scene = new Scene(dichVuViewParent);
         DichVuController dichVuController = loader.getController();
+        if(dichVuDaChon.getText().equals("") || dichVuDaChon.getText().equals("")){
+
+        } else {
+            dichVuController.setDichVuDaChon(dichVuDaChon.getText());
+            dichVuController.setTongDichVu(giaDichVu.getText().trim());
+        }
         stage.setScene(scene);
     }
 
+    public void changeSceneMenu(ActionEvent event) throws IOException{
+        Stage stage = retrieveStage(event);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/Menu.fxml"));
+        Parent menuViewParent = loader.load();
+        Scene scene = new Scene(menuViewParent);
+        stage.setScene(scene);
+    }
+
+    public void changeSceneSanh(ActionEvent event) throws IOException{
+        Stage stage = retrieveStage(event);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/Sanh.fxml"));
+        Parent sanhViewParent = loader.load();
+        Scene scene = new Scene(sanhViewParent);
+        stage.setScene(scene);
+    }
+
+    public void setGiaDichVu(String tongGiaDichVu){
+        String output = myFormatter.format(Integer.parseInt(tongGiaDichVu));
+        giaDichVu.setText(output);
+    }
+
+    public void setDichVuDaChon(String listDichVuDaChon) {
+        String[] idDichVuList = listDichVuDaChon.split(" ");
+        dichVuDaChon.setText(listDichVuDaChon);
+    }
 }

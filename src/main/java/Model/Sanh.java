@@ -1,6 +1,6 @@
 package Model;
 
-public class Sanh implements Data{
+public class Sanh extends Data{
     private int idSanh;
     private String maSanh;
     private int donGia;

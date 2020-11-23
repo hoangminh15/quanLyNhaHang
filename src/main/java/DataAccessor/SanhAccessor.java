@@ -1,11 +1,13 @@
 package DataAccessor;
 
+import Model.Data;
+import Model.DichVu;
 import Model.Sanh;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
-public class SanhAccessor extends DataAccessor{
+public class SanhAccessor extends DataAccessor implements iDataController{
     Sanh sanh;
     ArrayList<String> maSanhList;
 
@@ -52,6 +54,16 @@ public class SanhAccessor extends DataAccessor{
             ex.printStackTrace();
         }
         return maSanhList;
+
+    }
+
+    @Override
+    public void them(Data data) {
+
+    }
+
+    @Override
+    public void xoa(Data data) {
 
     }
 }

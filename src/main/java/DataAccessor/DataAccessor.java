@@ -1,8 +1,6 @@
 package DataAccessor;
 
 import Model.Data;
-import Model.DichVu;
-import javafx.scene.control.Alert;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -36,8 +34,7 @@ public abstract class DataAccessor {
     //Method de tach ket qua tu ResultSet va dat vao cac Data object
     public abstract Data getFromResultSet(ResultSet rs) throws Exception;
 
-    //Method de lay danh sach cac data object(Khong day du thong tin)
+    //Method de lay danh sach cac data object(Khong day du thong tin, chi co danh sanh key)
     public abstract List<String> layDanhSach();
 
-    public abstract void them(Data data);
 }

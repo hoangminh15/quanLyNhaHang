@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="613.0" prefWidth="946.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.MenuController">
+   <children>
+      <TableView fx:id="table" layoutY="1.0" onMouseClicked="#chonHuyDichVu" prefHeight="237.0" prefWidth="621.0">
+         <columns>
+            <TableColumn fx:id="idMenu" prefWidth="302.0" text="ID" />
+            <TableColumn fx:id="donGia" prefWidth="318.0" text="Đơn giá" />
+         </columns>
+      </TableView>
+      <Label layoutX="229.0" layoutY="257.0" text="THÊM MENU">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="302.0" text="ID:" />
+      <Label layoutX="241.0" layoutY="302.0" text="Đơn giá: " />
+      <TextField fx:id="idText" layoutX="110.0" layoutY="297.0" prefHeight="26.0" prefWidth="55.0" />
+      <TextField fx:id="donGiaText" layoutX="312.0" layoutY="297.0" />
+      <Button layoutX="557.0" layoutY="562.0" mnemonicParsing="false" onAction="#them" text="Thêm" />
+      <Label layoutX="730.0" layoutY="497.0" text="XÓA MENU">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="715.0" layoutY="534.0" text="Chọn Menu để xóa" />
+      <Button layoutX="756.0" layoutY="563.0" mnemonicParsing="false" onAction="#xoa" text="Xóa" />
+      <Label fx:id="tongTienLabel" layoutX="722.0" layoutY="142.0" prefHeight="21.0" prefWidth="120.0">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="620.0" mnemonicParsing="false" onAction="#troLai" prefHeight="26.0" prefWidth="325.0" text="Trở lại" />
+      <Label fx:id="dichVuDaChonLabel" layoutX="680.0" layoutY="71.0" />
+      <Label layoutX="36.0" layoutY="349.0" text="Khai vị:" />
+      <TextField fx:id="khaiViText" layoutX="111.0" layoutY="344.0" prefHeight="26.0" prefWidth="501.0" />
+      <Label layoutX="33.0" layoutY="390.0" text="Món chính:" />
+      <Label layoutX="21.0" layoutY="527.0" text="Tráng miệng:" />
+      <TextArea fx:id="monChinhText" layoutX="111.0" layoutY="391.0" prefHeight="109.0" prefWidth="501.0" wrapText="true" />
+      <TextField fx:id="trangMiengText" layoutX="111.0" layoutY="522.0" prefHeight="26.0" prefWidth="501.0" />
+      <Line endX="1.0" endY="-45.0" layoutX="619.0" layoutY="277.0" opacity="0.32" startX="1.0" startY="336.5" />
+      <Line endX="224.0" layoutX="722.0" layoutY="480.0" opacity="0.32" startX="-100.0" />
+      <Label layoutX="654.0" layoutY="61.0" text="ID:" />
+      <Label layoutX="857.0" layoutY="61.0" text="Đơn giá: " />
+      <Label layoutX="652.0" layoutY="108.0" text="Khai vị:" />
+      <Label layoutX="649.0" layoutY="149.0" text="Món chính:" />
+      <Label layoutX="637.0" layoutY="286.0" text="Tráng miệng:" />
+   </children>
+</AnchorPane>

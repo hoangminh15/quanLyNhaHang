@@ -1,18 +1,12 @@
 package Model;
 
-public class DichVu implements Data{
+public class DichVu extends Data{
     private int idDichVu;
     private String tenDichVu;
     private int donGia;
 
     public DichVu(){
 
-    }
-
-    public DichVu(int idDichVu, String tenDichVu, int donGia) {
-        this.idDichVu = idDichVu;
-        this.tenDichVu = tenDichVu;
-        this.donGia = donGia;
     }
 
     public int getIdDichVu() {
