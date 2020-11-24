@@ -26,13 +26,13 @@ public class MenuController extends Controller{
     ObservableList<Menu> menuList;
     Stage stage;
 
-    public void troLai(ActionEvent event) throws IOException{
-        stage = retrieveStage(event);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/Home.fxml"));
-        Parent homeParent = loader.load();
-        Scene scene = new Scene(homeParent);
-        stage.setScene(scene);
-    }
+//    public void troLai(ActionEvent event) throws IOException{
+//        stage = retrieveStage(event);
+//        FXMLLoader loader = new FXMLLoader();
+//        loader.setLocation(getClass().getResource("/View/Home.fxml"));
+//        Parent homeParent = loader.load();
+//        Scene scene = new Scene(homeParent);
+//        stage.setScene(scene);
+//    }
 
 }

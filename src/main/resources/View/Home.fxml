@@ -61,7 +61,7 @@
             <Label fx:id="sucChua" layoutX="410.0" layoutY="154.0" text="y" />
             <Label layoutX="438.0" layoutY="155.0" text="bàn " />
             <Label layoutX="330.0" layoutY="35.0" text="Ngày tổ chức: " />
-            <Label layoutX="429.0" layoutY="35.0" text="20/11/2020" />
+            <Label fx:id="ngayToChuc" layoutX="429.0" layoutY="35.0" />
             <Label layoutX="595.0" layoutY="35.0" text="Thời điểm: " />
             <ImageView fx:id="imageView" fitHeight="123.0" fitWidth="219.0" layoutX="578.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -95,7 +95,7 @@
             <Label layoutX="551.0" layoutY="616.0" text="Giá:" />
             <Label layoutX="733.0" layoutY="616.0" prefHeight="16.0" prefWidth="49.0" text="đồng" />
             <Label fx:id="giaDichVu" layoutX="639.0" layoutY="616.0" />
-            <Label fx:id="thoiDiemText" layoutX="689.0" layoutY="34.0" text="..." />
+            <Label fx:id="thoiDiem" layoutX="689.0" layoutY="34.0" text="..." />
             <Label layoutX="551.0" layoutY="462.0" text="Tổng" />
             <Label layoutX="733.0" layoutY="462.0" prefHeight="16.0" prefWidth="108.0" text="đồng" />
             <Label fx:id="tongTienAn" layoutX="639.0" layoutY="462.0" text="..." />

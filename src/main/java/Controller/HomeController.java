@@ -3,7 +3,10 @@ package Controller;
 import DataAccessor.DichVuAccessor;
 import DataAccessor.MenuAccessor;
 import DataAccessor.SanhAccessor;
+import Helper.DateFormatter;
 import Helper.DateValidator;
+import Model.HopDong;
+import Model.HopDongHolder;
 import Model.Menu;
 import Model.Sanh;
 import javafx.collections.FXCollections;
@@ -63,7 +66,7 @@ public class HomeController extends Controller implements Initializable {
     @FXML
     Label giaDichVu;
     @FXML
-    Label thoiDiemText;
+    Label thoiDiem;
     @FXML
     Label ngayLapDon;
     @FXML
@@ -76,6 +79,16 @@ public class HomeController extends Controller implements Initializable {
     Label dichVuDaChon3;
     @FXML
     Label soMenu;
+    @FXML
+    Label ngayToChuc;
+    @FXML
+    TextField nhanVien;
+    @FXML
+    TextField tenKhachHang;
+    @FXML
+    TextField diaChi;
+    @FXML
+    TextField dienThoai;
 
     SanhAccessor sanhAccessor;
     MenuAccessor menuAccessor;
@@ -83,6 +96,7 @@ public class HomeController extends Controller implements Initializable {
     DateValidator dateValidator;
     boolean isSatOrSun;
     DecimalFormat myFormatter;
+    HopDongHolder holder;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -167,7 +181,7 @@ public class HomeController extends Controller implements Initializable {
             } else if(thoiDiem.equals("chiều")){
                 donGiaSanh = (int) (donGiaSanh*0.85);
             } else{
-                donGiaSanh = (int) (donGiaSanh*0.9);
+                donGiaSanh = (int) (donGiaSanh*1);
             }
             if (isSatOrSun){
                 donGiaSanh = (int) (donGiaSanh*1.1);
@@ -179,7 +193,7 @@ public class HomeController extends Controller implements Initializable {
     }
 
     public void chonThoiDiem(){
-        thoiDiemText.setText("Buổi " + thoiDiemCB.getValue().toLowerCase());
+        thoiDiem.setText(thoiDiemCB.getValue().toLowerCase());
         if (maSanhCB.getValue() != null){
             xemSanh();
         }
@@ -197,6 +211,7 @@ public class HomeController extends Controller implements Initializable {
         if(maSanhCB.getValue() != null){
             xemSanh();
         }
+        ngayToChuc.setText(thoiGianDP.getValue().toString());
     }
 
     public void changeSceneDichVu(ActionEvent event) throws IOException {
@@ -205,6 +220,11 @@ public class HomeController extends Controller implements Initializable {
         loader.setLocation(getClass().getResource("/View/DichVu.fxml"));
         Parent dichVuViewParent = loader.load();
         Scene scene = new Scene(dichVuViewParent);
+
+        //Lam viec voi data tu Home sang DichVu
+        HopDongHolder holder = HopDongHolder.getInstance();
+        holder.setHopDong(new HopDong(ngayToChuc.getText(), thoiDiem.getText(), maSanh.getText(), soMenu.getText(), soBanText.getText(), soKhachMotBanText.getText(), nhanVien.getText(), tenKhachHang.getText(), diaChi.getText(), dienThoai.getText(), ngayLapDon.getText(), giaDichVu.getText(), dichVuDaChon.getText()));
+
         DichVuController dichVuController = loader.getController();
         if(dichVuDaChon.getText().equals("") || dichVuDaChon.getText().equals("")){
 
@@ -238,8 +258,25 @@ public class HomeController extends Controller implements Initializable {
         giaDichVu.setText(output);
     }
 
-    public void setDichVuDaChon(String listDichVuDaChon) {
-        String[] idDichVuList = listDichVuDaChon.split(" ");
-        dichVuDaChon.setText(listDichVuDaChon);
+
+    public void setBackHopDong(HopDong hopDong){
+        if (hopDong.getNgayToChuc().equals("")) return;
+        thoiGianDP.setValue(LocalDate.parse(hopDong.getNgayToChuc()));
+        chonNgay();
+        thoiDiemCB.setValue(hopDong.getThoiDiem());
+        chonThoiDiem();
+        maSanhCB.setValue(hopDong.getMaSanh());
+        xemSanh();
+        menuCB.setValue(hopDong.getSoMenu());
+        soBanText.setText(hopDong.getSoBan());
+        soKhachMotBanText.setText(hopDong.getSoKhach());
+        xemMenu();
+        nhanVien.setText(hopDong.getNhanVien());
+        tenKhachHang.setText(hopDong.getTenKhachHang());
+        diaChi.setText(hopDong.getDiaChi());
+        dienThoai.setText(hopDong.getDienThoai());
+        ngayLapDon.setText(hopDong.getNgayLapDon());
+        giaDichVu.setText(hopDong.getGiaDichVu());
+        dichVuDaChon.setText(hopDong.getDichVuDaChon());
     }
 }

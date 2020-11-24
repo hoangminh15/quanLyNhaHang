@@ -2,6 +2,8 @@ package Controller;
 
 import DataAccessor.DichVuAccessor;
 import Model.DichVu;
+import Model.HopDong;
+import Model.HopDongHolder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -142,22 +144,27 @@ public class DichVuController extends Controller implements Initializable {
         dichVuAccessor.xoa(dichVuBiXoa);
     }
 
-    public void chonLai(ActionEvent event) throws IOException {
+    public void chonLai(){
         tongTienLabel.setText("");
         dichVuDaChonLabel.setText("");
         tongTien = 0;
     }
 
     public void submit(ActionEvent event) throws IOException {
-        if(tongTien == 0) return;
+        HopDongHolder holder = HopDongHolder.getInstance();
+        HopDong hopDong = holder.getHopDong();
+
         stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/Home.fxml"));
         Parent homeParent = loader.load();
         Scene scene = new Scene(homeParent);
         HomeController homeController = loader.getController();
+
+        //Pass tra data:
+        hopDong.setDichVuDaChon(dichVuDaChonLabel.getText());
+        homeController.setBackHopDong(hopDong);
         homeController.setGiaDichVu(String.valueOf(tongTien));
-        homeController.setDichVuDaChon(dichVuDaChonLabel.getText());
         stage.setScene(scene);
     }
 
