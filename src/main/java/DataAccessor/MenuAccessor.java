@@ -5,6 +5,7 @@ import Model.DichVu;
 import Model.Menu;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,12 +57,27 @@ public class MenuAccessor extends DataAccessor implements iDataController{
     }
 
     @Override
-    public void them(Data data) {
-
+    public void them(Data menuData) throws SQLException {
+        Menu menuObject = (Menu) menuData;
+        int idMenu = menuObject.getIdMenu();
+        String khaiVi = menuObject.getKhaiVi();
+        String monChinh = menuObject.getMonChinh();
+        String trangMieng = menuObject.getTrangmieng();
+        int donGia = menuObject.getDonGia();
+        String sql = "INSERT INTO `NhaHang`.`Menu` (`idMenu`, `khaiVi`, `monChinh`, `trangMieng`, `donGia`) VALUES ('" + idMenu + "', '" + khaiVi + "', '" + monChinh + "', '" + trangMieng + "', '" + donGia + "');";
+        statement.executeUpdate(sql);
     }
 
     @Override
-    public void xoa(Data data) {
-
+    public void xoa(Data menuData) {
+        Menu menuObject = (Menu) menuData;
+        int idMenu = menuObject.getIdMenu();
+        String sql = "DELETE FROM NhaHang.Menu WHERE idMenu = '" + idMenu + "'";
+        try {
+            statement.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
+
 }

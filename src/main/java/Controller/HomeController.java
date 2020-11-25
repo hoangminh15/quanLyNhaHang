@@ -97,7 +97,6 @@ public class HomeController extends Controller implements Initializable {
     DichVuAccessor dichVuAccessor;
     DateValidator dateValidator;
     boolean isSatOrSun;
-    DecimalFormat myFormatter;
     HopDongHolder holder;
 
     @Override
@@ -140,7 +139,6 @@ public class HomeController extends Controller implements Initializable {
         monChinh.setText(menu.getMonChinh());
         trangMieng.setText(menu.getTrangmieng());
         soMenu.setText(String.valueOf(menu.getIdMenu()));
-
         String donGiaMenuOutput = myFormatter.format(donGiaMenu);
         giaMenu.setText(donGiaMenuOutput);
 
@@ -220,8 +218,7 @@ public class HomeController extends Controller implements Initializable {
         Scene scene = new Scene(dichVuViewParent);
 
         //Lam viec voi data tu Home sang DichVu
-        HopDongHolder holder = HopDongHolder.getInstance();
-        holder.setHopDong(new HopDong(ngayToChuc.getText(), thoiDiem.getText(), maSanh.getText(), soMenu.getText(), soBanText.getText(), soKhachMotBanText.getText(), nhanVien.getText(), tenKhachHang.getText(), diaChi.getText(), dienThoai.getText(), ngayLapDon.getText(), giaDichVu.getText(), dichVuDaChon.getText()));
+        holdDataBetweenPage();
 
         DichVuController dichVuController = loader.getController();
         if(dichVuDaChon.getText().equals("") || dichVuDaChon.getText().equals("")){
@@ -239,6 +236,7 @@ public class HomeController extends Controller implements Initializable {
         loader.setLocation(getClass().getResource("/View/Menu.fxml"));
         Parent menuViewParent = loader.load();
         Scene scene = new Scene(menuViewParent);
+        holdDataBetweenPage();
         stage.setScene(scene);
     }
 
@@ -286,7 +284,6 @@ public class HomeController extends Controller implements Initializable {
             giaDichVuValue = 0;
         } else {
             giaDichVuThanhTien = giaDichVu.getText();
-            System.out.println(giaDichVuThanhTien);
             giaDichVuValue = formatBackToInt(giaDichVuThanhTien);
         }
 
@@ -312,6 +309,13 @@ public class HomeController extends Controller implements Initializable {
 
     }
 
+    public void inHopDong(){
+        //Save hop dong vao database
+
+        //In hop dong ra console
+
+    }
+
     public int formatBackToInt(String s){
         String[] stringArray = s.split(",");
         String output = "";
@@ -320,5 +324,10 @@ public class HomeController extends Controller implements Initializable {
         }
         int outputInt = Integer.parseInt(output);
         return outputInt;
+    }
+
+    public void holdDataBetweenPage(){
+        holder = HopDongHolder.getInstance();
+        holder.setHopDong(new HopDong(ngayToChuc.getText(), thoiDiem.getText(), maSanh.getText(), soMenu.getText(), soBanText.getText(), soKhachMotBanText.getText(), nhanVien.getText(), tenKhachHang.getText(), diaChi.getText(), dienThoai.getText(), ngayLapDon.getText(), giaDichVu.getText(), dichVuDaChon.getText()));
     }
 }

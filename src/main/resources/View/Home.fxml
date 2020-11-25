@@ -48,7 +48,7 @@
             <Label layoutX="23.0" layoutY="444.0" text="3. DỊCH VỤ" />
             <Label layoutX="582.0" layoutY="205.0" text="Giá:" />
             <Label layoutX="767.0" layoutY="205.0" prefHeight="16.0" prefWidth="49.0" text="đồng" />
-            <Button layoutX="88.0" layoutY="583.0" mnemonicParsing="false" text="In hợp đồng" />
+            <Button layoutX="88.0" layoutY="583.0" mnemonicParsing="false" onAction="#inHopDong" text="In hợp đồng" />
             <Button layoutX="86.0" layoutY="545.0" mnemonicParsing="false" onAction="#thanhTien" prefHeight="26.0" prefWidth="103.0" text="Thành tiền" />
             <Button layoutX="24.0" layoutY="473.0" mnemonicParsing="false" onAction="#changeSceneDichVu" text="Xem danh sách dịch vụ" fx:id="xemDichVuButton" />
             <Label layoutX="15.0" layoutY="392.0" text="Số khách/bàn:" />
