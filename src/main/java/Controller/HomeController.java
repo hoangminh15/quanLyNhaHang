@@ -3,7 +3,6 @@ package Controller;
 import DataAccessor.DichVuAccessor;
 import DataAccessor.MenuAccessor;
 import DataAccessor.SanhAccessor;
-import Helper.DateFormatter;
 import Helper.DateValidator;
 import Model.HopDong;
 import Model.HopDongHolder;
@@ -15,7 +14,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -74,10 +72,6 @@ public class HomeController extends Controller implements Initializable {
     @FXML
     Label dichVuDaChon;
     @FXML
-    Label dichVuDaChon2;
-    @FXML
-    Label dichVuDaChon3;
-    @FXML
     Label soMenu;
     @FXML
     Label ngayToChuc;
@@ -89,6 +83,14 @@ public class HomeController extends Controller implements Initializable {
     TextField diaChi;
     @FXML
     TextField dienThoai;
+    @FXML
+    Label tongThanhTienLB;
+    @FXML
+    Label sanhThanhTienLB;
+    @FXML
+    Label menuThanhTienLB;
+    @FXML
+    Label dichVuThanhTienLB;
 
     SanhAccessor sanhAccessor;
     MenuAccessor menuAccessor;
@@ -121,10 +123,6 @@ public class HomeController extends Controller implements Initializable {
         monChinh.setWrapText(true);
         dichVuDaChon.setMaxWidth(300);
         dichVuDaChon.setWrapText(true);
-        dichVuDaChon2.setMaxWidth(300);
-        dichVuDaChon2.setWrapText(true);
-        dichVuDaChon3.setMaxWidth(300);
-        dichVuDaChon3.setWrapText(true);
 
         ObservableList<String> thoiDiemList = FXCollections.observableArrayList("Sáng", "Chiều", "Tối");
         thoiDiemCB.setItems(thoiDiemList);
@@ -278,5 +276,49 @@ public class HomeController extends Controller implements Initializable {
         ngayLapDon.setText(hopDong.getNgayLapDon());
         giaDichVu.setText(hopDong.getGiaDichVu());
         dichVuDaChon.setText(hopDong.getDichVuDaChon());
+    }
+
+    public void thanhTien(){
+        String giaDichVuThanhTien;
+        int giaDichVuValue;
+        if (giaDichVu.getText().equals("")){
+            giaDichVuThanhTien = "0";
+            giaDichVuValue = 0;
+        } else {
+            giaDichVuThanhTien = giaDichVu.getText();
+            System.out.println(giaDichVuThanhTien);
+            giaDichVuValue = formatBackToInt(giaDichVuThanhTien);
+        }
+
+        String giaSanhThanhTien = giaSanh.getText();
+        String giaMenuThanhTien = tongTienAn.getText();
+        if (giaSanhThanhTien.equals("") || giaMenu.equals("")){
+            Alert missingFieldAlert = new Alert(Alert.AlertType.INFORMATION);
+            missingFieldAlert.setTitle("Chú ý");
+            missingFieldAlert.setHeaderText("Thông tin sảnh và menu là bắt buộc");
+            missingFieldAlert.setContentText("Vui lòng xem lại");
+            missingFieldAlert.show();
+        }
+
+        sanhThanhTienLB.setText(giaSanhThanhTien);
+        menuThanhTienLB.setText(giaMenuThanhTien);
+        dichVuThanhTienLB.setText(giaDichVuThanhTien);
+
+        int giaSanhValue = formatBackToInt(giaSanhThanhTien);
+        int giaMenuValue = formatBackToInt(giaMenuThanhTien);
+
+        int tongThanhToan = giaSanhValue + giaMenuValue + giaDichVuValue;
+        tongThanhTienLB.setText(myFormatter.format(tongThanhToan));
+
+    }
+
+    public int formatBackToInt(String s){
+        String[] stringArray = s.split(",");
+        String output = "";
+        for (String e : stringArray){
+            output += e;
+        }
+        int outputInt = Integer.parseInt(output);
+        return outputInt;
     }
 }

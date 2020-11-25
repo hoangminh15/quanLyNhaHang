@@ -103,8 +103,8 @@ public class DichVuController extends Controller implements Initializable {
 
     public void them(){
         try{
-            int idCheck = Integer.parseInt(idThem.getText());
-            int donGiaCheck = Integer.parseInt((donGiaThem.getText()));
+            Integer.parseInt(idThem.getText());
+            Integer.parseInt((donGiaThem.getText()));
         } catch( NumberFormatException e){
             Alert invalidAlert = new Alert(Alert.AlertType.INFORMATION);
             invalidAlert.setTitle("Chú ý");
@@ -167,6 +167,4 @@ public class DichVuController extends Controller implements Initializable {
         homeController.setGiaDichVu(String.valueOf(tongTien));
         stage.setScene(scene);
     }
-
-
 }
