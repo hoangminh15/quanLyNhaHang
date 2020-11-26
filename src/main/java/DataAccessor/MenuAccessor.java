@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MenuAccessor extends DataAccessor implements iDataController{
-    Menu menu;
-    ArrayList<String> idMenuList;
+    private Menu menu;
+    private ArrayList<String> idMenuList;
 
     public MenuAccessor(){
         thietLapKetNoi();

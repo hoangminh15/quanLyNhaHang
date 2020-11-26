@@ -76,20 +76,6 @@ public class SanhController extends Controller implements Initializable {
         table.setItems(sanhList);
     }
 
-    public void troLai(ActionEvent event) throws IOException {
-        HopDongHolder holder = HopDongHolder.getInstance();
-        HopDong hopDong = holder.getHopDong();
-
-        stage = retrieveStage(event);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/Home.fxml"));
-        Parent homeParent = loader.load();
-        Scene scene = new Scene(homeParent);
-        HomeController homeController = loader.getController();
-        homeController.setBackHopDong(hopDong);
-        stage.setScene(scene);
-    }
-
     public void them() throws SQLException {
 
         try{

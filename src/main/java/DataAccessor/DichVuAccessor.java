@@ -7,8 +7,8 @@ import java.sql.*;
 import java.util.ArrayList;
 
 public class DichVuAccessor extends DataAccessor implements iDataController {
-    DichVu dichVu;
-    ArrayList<String> idDichVuList;
+    private DichVu dichVu;
+    private ArrayList<String> idDichVuList;
 
     public DichVuAccessor() {
         thietLapKetNoi();

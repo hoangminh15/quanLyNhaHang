@@ -10,8 +10,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SanhAccessor extends DataAccessor implements iDataController{
-    Sanh sanh;
-    ArrayList<String> maSanhList;
+    private Sanh sanh;
+    private ArrayList<String> maSanhList;
 
     public SanhAccessor(){
         thietLapKetNoi();
@@ -29,8 +29,6 @@ public class SanhAccessor extends DataAccessor implements iDataController{
         }
         return sanh;
     }
-
-
 
     @Override
     public Sanh getFromResultSet(ResultSet rs) throws Exception {
