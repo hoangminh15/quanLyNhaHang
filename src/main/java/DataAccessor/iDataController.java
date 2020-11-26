@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public interface iDataController {
 
-    public abstract void them(Data data) throws SQLException;
+    void them(Data data) throws SQLException;
 
-    public abstract void xoa(Data data);
+    void xoa(Data data);
 }

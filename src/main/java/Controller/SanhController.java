@@ -3,7 +3,6 @@ package Controller;
 import DataAccessor.SanhAccessor;
 import Model.HopDong;
 import Model.HopDongHolder;
-import Model.Menu;
 import Model.Sanh;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -133,6 +132,7 @@ public class SanhController extends Controller implements Initializable {
         sanhAccessor.xoa(sanhBiXoa);
     }
 
+    //Xem sảnh khi được click vào hàng cần xem
     public void xemSanh(MouseEvent event){
         Sanh sanhDuocChon = table.getSelectionModel().getSelectedItem();
         if(event.getClickCount() == 2 && (sanhDuocChon != null)){

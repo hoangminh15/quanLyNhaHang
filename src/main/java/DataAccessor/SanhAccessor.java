@@ -1,10 +1,12 @@
 package DataAccessor;
 
 import Model.Data;
-import Model.DichVu;
+
+import Model.Menu;
 import Model.Sanh;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class SanhAccessor extends DataAccessor implements iDataController{
@@ -43,7 +45,7 @@ public class SanhAccessor extends DataAccessor implements iDataController{
     @Override
     public ArrayList<String> layDanhSach(){
         String sql = "SELECT maSanh FROM NhaHang.Sanh";
-        maSanhList = new ArrayList<String>();
+        maSanhList = new ArrayList<>();
         try{
             rs = statement.executeQuery(sql);
             while(rs.next()){
@@ -57,12 +59,25 @@ public class SanhAccessor extends DataAccessor implements iDataController{
     }
 
     @Override
-    public void them(Data data) {
-
+    public void them(Data data) throws SQLException {
+        Sanh sanhObject = (Sanh) data;
+        int idSanh = sanhObject.getIdSanh();
+        int donGia = sanhObject.getDonGia();
+        String maSanh = sanhObject.getMaSanh();
+        int sucChua = sanhObject.getSucChua();
+        String sql = "INSERT INTO NhaHang.Sanh VALUES ('" + idSanh + "', '" + maSanh + "', '" + sucChua + "', '" + donGia + "');";
+        statement.executeUpdate(sql);
     }
 
     @Override
     public void xoa(Data data) {
-
+        Sanh menuObject = (Sanh) data;
+        int idSanh = menuObject.getIdSanh();
+        String sql = "DELETE FROM NhaHang.Sanh WHERE idSanh = '" + idSanh + "'";
+        try {
+            statement.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 }

@@ -56,9 +56,9 @@
             <Line endX="1370.0" layoutX="-223.0" layoutY="15.0" opacity="0.21" startX="-221.0" />
             <Label layoutX="329.0" layoutY="76.0" text="Sảnh đã chọn:" />
             <Label layoutX="335.0" layoutY="113.0" text="Mã sảnh:" />
-            <Label fx:id="maSanh" layoutX="409.0" layoutY="113.0" text="x" />
+            <Label fx:id="maSanh" layoutX="409.0" layoutY="113.0" />
             <Label layoutX="329.0" layoutY="154.0" text="Sức chứa: " />
-            <Label fx:id="sucChua" layoutX="410.0" layoutY="154.0" text="y" />
+            <Label fx:id="sucChua" layoutX="410.0" layoutY="154.0" />
             <Label layoutX="438.0" layoutY="155.0" text="bàn " />
             <Label layoutX="330.0" layoutY="35.0" text="Ngày tổ chức: " />
             <Label fx:id="ngayToChuc" layoutX="429.0" layoutY="35.0" />
@@ -81,9 +81,9 @@
             <Label layoutX="329.0" layoutY="317.0" text="Món chính:" />
             <Label layoutX="317.0" layoutY="395.0" text="Tráng miệng:" />
             <Label layoutX="323.0" layoutY="493.0" text="Dịch vụ đã chọn: (Danh sách ID dịch vụ)" />
-            <Label fx:id="khaiVi" layoutX="431.0" layoutY="269.0" text="..." />
-            <Label fx:id="monChinh" layoutX="431.0" layoutY="317.0" text="..." />
-            <Label fx:id="trangMieng" layoutX="425.0" layoutY="395.0" text="..." />
+            <Label fx:id="khaiVi" layoutX="431.0" layoutY="269.0" />
+            <Label fx:id="monChinh" layoutX="431.0" layoutY="317.0" />
+            <Label fx:id="trangMieng" layoutX="425.0" layoutY="395.0" />
             <TextField fx:id="nhanVien" layoutX="890.0" layoutY="72.0" prefHeight="26.0" prefWidth="245.0" />
             <TextField fx:id="tenKhachHang" layoutX="890.0" layoutY="149.0" prefHeight="26.0" prefWidth="245.0" />
             <TextField fx:id="diaChi" layoutX="888.0" layoutY="208.0" prefHeight="26.0" prefWidth="245.0" />
@@ -91,7 +91,7 @@
             <Label fx:id="giaSanh" layoutX="670.0" layoutY="205.0" />
             <Label layoutX="551.0" layoutY="436.0" text="Giá:" />
             <Label layoutX="733.0" layoutY="436.0" prefHeight="16.0" prefWidth="108.0" text="đồng / khách" />
-            <Label fx:id="giaMenu" layoutX="639.0" layoutY="436.0" text="..." />
+            <Label fx:id="giaMenu" layoutX="639.0" layoutY="436.0" />
             <Label layoutX="551.0" layoutY="616.0" text="Giá:" />
             <Label layoutX="733.0" layoutY="616.0" prefHeight="16.0" prefWidth="49.0" text="đồng" />
             <Label fx:id="giaDichVu" layoutX="639.0" layoutY="616.0" />
@@ -101,7 +101,7 @@
             <Label fx:id="tongTienAn" layoutX="639.0" layoutY="462.0" />
             <Line endX="-89.5" endY="552.5" layoutX="967.0" layoutY="-156.0" opacity="0.21" startX="171.5" startY="552.5" />
             <Label fx:id="dichVuDaChon" layoutX="357.0" layoutY="521.0" />
-            <Label fx:id="soMenu" layoutX="496.0" layoutY="236.0" text="..." />
+            <Label fx:id="soMenu" layoutX="496.0" layoutY="236.0" />
             <Label layoutX="316.0" layoutY="521.0" prefHeight="16.0" prefWidth="29.0" text="ID: " />
             <Line endX="181.5" layoutX="124.0" layoutY="521.0" opacity="0.31" startX="-124.0" />
             <Line endX="-64.0" endY="-13.0" layoutX="942.0" layoutY="502.0" opacity="0.3" startX="-64.0" startY="-104.0" />

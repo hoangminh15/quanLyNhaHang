@@ -1,5 +1,6 @@
 package Model;
 
+//Class để tạo các object lưu thông tin và làm việc với dữ liệu của dịch vụ
 public class DichVu extends Data{
     private int idDichVu;
     private String tenDichVu;

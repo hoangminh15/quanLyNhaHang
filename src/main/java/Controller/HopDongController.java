@@ -1,26 +1,16 @@
 package Controller;
 
 import DataAccessor.HopDongAccessor;
-import DataAccessor.MenuAccessor;
 import Model.HopDong;
-import Model.HopDongHolder;
-import Model.Menu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -67,7 +57,6 @@ public class HopDongController extends Controller implements Initializable {
 
 
     ObservableList<HopDong> hopDongList;
-    Stage stage;
     HopDongAccessor hopDongAccessor;
     ArrayList<String> danhSachIdHopDong;
 
@@ -87,20 +76,7 @@ public class HopDongController extends Controller implements Initializable {
         table.setItems(hopDongList);
     }
 
-    public void troLai(ActionEvent event) throws IOException {
-        HopDongHolder holder = HopDongHolder.getInstance();
-        HopDong hopDong = holder.getHopDong();
-
-        stage = retrieveStage(event);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/Home.fxml"));
-        Parent homeParent = loader.load();
-        Scene scene = new Scene(homeParent);
-        HomeController homeController = loader.getController();
-        homeController.setBackHopDong(hopDong);
-        stage.setScene(scene);
-    }
-
+    //Xem hợp đồng khi được double click vào hàng cần xem
     public void xemHopDong(MouseEvent event){
         HopDong hopDongDuocChon = table.getSelectionModel().getSelectedItem();
         if(event.getClickCount() == 2 && (hopDongDuocChon != null)){

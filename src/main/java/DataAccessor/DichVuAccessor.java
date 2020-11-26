@@ -14,7 +14,7 @@ public class DichVuAccessor extends DataAccessor implements iDataController {
         thietLapKetNoi();
     }
 
-    //Chu y kieu du lieu cua idDichVu
+    //Lấy dịch vụ data theo mã
     public DichVu layDichVuData(int idDichVu) {
         String sql = "SELECT * FROM NhaHang.DichVu WHERE idDichVu = '" + idDichVu + "'";
         try {
@@ -27,6 +27,7 @@ public class DichVuAccessor extends DataAccessor implements iDataController {
         return dichVu;
     }
 
+    //Lấy danh sách ID các dịch vụ
     public ArrayList<String> layDanhSach() {
         String sql = "SELECT idDichVu FROM NhaHang.DichVu";
         idDichVuList = new ArrayList<>();
@@ -64,6 +65,7 @@ public class DichVuAccessor extends DataAccessor implements iDataController {
         }
     }
 
+    //Tách kết quả from resultSet: bộ kết quả và gán vào object chứa data là ichVu
     @Override
     public DichVu getFromResultSet(ResultSet rs) throws Exception {
 

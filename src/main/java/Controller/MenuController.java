@@ -1,22 +1,15 @@
 package Controller;
 
 import DataAccessor.MenuAccessor;
-import Model.*;
 import Model.Menu;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -32,12 +25,7 @@ public class MenuController extends Controller implements Initializable {
     @FXML
     TableColumn<Menu, Integer> idMenu;
     @FXML
-    TableColumn<Menu, String> maSanh;
-    @FXML
-    TableColumn<Menu, Integer> sucChua;
-    @FXML
     TableColumn<Menu, Integer> donGia;
-
     @FXML
     TextField khaiViText;
     @FXML
@@ -83,22 +71,7 @@ public class MenuController extends Controller implements Initializable {
         trangMiengLB.setWrapText(true);
     }
 
-    public void troLai(ActionEvent event) throws IOException{
-        HopDongHolder holder = HopDongHolder.getInstance();
-        HopDong hopDong = holder.getHopDong();
-
-        stage = retrieveStage(event);
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("/View/Home.fxml"));
-        Parent homeParent = loader.load();
-        Scene scene = new Scene(homeParent);
-        HomeController homeController = loader.getController();
-        homeController.setBackHopDong(hopDong);
-        stage.setScene(scene);
-    }
-
     public void them() throws SQLException {
-
         try{
             Integer.parseInt(idText.getText());
             Integer.parseInt((donGiaText.getText()));
@@ -138,6 +111,7 @@ public class MenuController extends Controller implements Initializable {
         menuAccessor.xoa(menuBiXoa);
     }
 
+    //Xem Menu khi double click vào hàng cần xem
     public void xemMenu(MouseEvent event){
         Menu menuDuocChon = table.getSelectionModel().getSelectedItem();
         if(event.getClickCount() == 2 && (menuDuocChon != null)){

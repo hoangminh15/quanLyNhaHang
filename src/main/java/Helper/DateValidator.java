@@ -1,5 +1,6 @@
 package Helper;
 
+//Class dùng để check một ngày bất kì là thứ mấy trong tuần
 public class DateValidator {
 
     // Return value: 0 = Sunday, 1 = Monday, ..., 6 = Saturday.

@@ -10,7 +10,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -54,33 +53,33 @@ public class DichVuController extends Controller implements Initializable {
     long tongTien = 0;
     Stage stage;
 
+    //Giống với constructor ; method này được chạy khi controller được khởi tạo
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         myFormatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
         dichVuAccessor = new DichVuAccessor();
         danhSachIdDichVu = dichVuAccessor.layDanhSach();
-        ArrayList<DichVu> dichVuListTemp = new ArrayList<DichVu>();
+        ArrayList<DichVu> dichVuListTemp = new ArrayList<>();
         //Loop qua danh sach va lay cac object ve cho vao mot list object DichVu
         for (String idDichVu : danhSachIdDichVu){
             dichVuListTemp.add(dichVuAccessor.layDichVuData(Integer.parseInt(idDichVu)));
         }
         dichVuList = FXCollections.observableList(dichVuListTemp);
-        idDichVu.setCellValueFactory(new PropertyValueFactory<DichVu, Integer>("idDichVu"));
-        tenDichVu.setCellValueFactory(new PropertyValueFactory<DichVu, String>("tenDichVu"));
-        donGia.setCellValueFactory(new PropertyValueFactory<DichVu, Integer>("donGia"));
+        idDichVu.setCellValueFactory(new PropertyValueFactory<>("idDichVu"));
+        tenDichVu.setCellValueFactory(new PropertyValueFactory<>("tenDichVu"));
+        donGia.setCellValueFactory(new PropertyValueFactory<>("donGia"));
         //Test
         table.setItems(dichVuList);
     }
 
+    //Chọn để xem dịch vụ
     public void chonHuyDichVu(MouseEvent event){
         DichVu dichVuDuocChon = table.getSelectionModel().getSelectedItem();
         if(event.getClickCount() == 2 && (dichVuDuocChon != null)){
             int id = dichVuDuocChon.getIdDichVu();
             String textHienTai = dichVuDaChonLabel.getText();
-            if (textHienTai.contains(" " + id)){
-
-            } else {
+            if (!textHienTai.contains(" " + id)){
                 dichVuDaChonLabel.setText(textHienTai.concat("  " + dichVuDuocChon.getIdDichVu()));
                 tongTien += dichVuDuocChon.getDonGia();
                 String output = myFormatter.format(tongTien);
@@ -89,17 +88,19 @@ public class DichVuController extends Controller implements Initializable {
         }
     }
 
+    // set dịch vụ đã chọn khi truyền data từ home trở lại trang dịch vụ, giúp tránh mất data khi chuyển scene
     public void setDichVuDaChon(String dichVuDaChon){
         dichVuDaChonLabel.setText(dichVuDaChon);
     }
 
+    //set tổng chi phí dịch vụ vào biến tongTien để tiện tính toán
     public void setTongDichVu(String giaDichVu){
         tongTienLabel.setText(giaDichVu);
         String tongTienString = giaDichVu.replaceAll(",", "").trim();
-
         tongTien = Integer.parseInt(tongTienString);
     }
 
+    //thêm dịch vụ vào danh sách dịch vụ, đồng thời thêm vào database
     public void them() throws SQLException {
         try{
             Integer.parseInt(idThem.getText());
@@ -126,20 +127,23 @@ public class DichVuController extends Controller implements Initializable {
         }
     }
 
+    //Xóa dịch vụ khỏi danh sách
     public void xoa(){
         DichVu dichVuBiXoa = table.getSelectionModel().getSelectedItem();
         dichVuList.remove(dichVuBiXoa);
         dichVuAccessor.xoa(dichVuBiXoa);
     }
 
+    //Chọn lại dịch vụ
     public void chonLai(){
         tongTienLabel.setText("");
         dichVuDaChonLabel.setText("");
         tongTien = 0;
     }
 
+    //Quay trở lại home, chỉnh sửa data của hopDong nếu người dùng đã chọn dịch vụ
     public void troLai(ActionEvent event) throws IOException {
-        HopDongHolder holder = HopDongHolder.getInstance();
+        holder = HopDongHolder.getInstance();
         HopDong hopDong = holder.getHopDong();
         stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();

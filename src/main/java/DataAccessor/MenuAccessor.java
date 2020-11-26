@@ -1,13 +1,11 @@
 package DataAccessor;
 
 import Model.Data;
-import Model.DichVu;
 import Model.Menu;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class MenuAccessor extends DataAccessor implements iDataController{
     Menu menu;

@@ -13,13 +13,17 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.text.DecimalFormat;
 
+//Superclass cua cac controller
 public abstract class Controller {
     DecimalFormat myFormatter;
+    HopDongHolder holder;
 
+    //Method dung de lấy stage trong javafx
     public Stage retrieveStage(ActionEvent event){
         return (Stage) ((Node) event.getSource()).getScene().getWindow();
     }
 
+    //Hiển thị thông báo khi các thông tin điền vào là không hợp lệ
     public void popUpInvalidAlert(){
         Alert invalidAlert = new Alert(Alert.AlertType.INFORMATION);
         invalidAlert.setTitle("Chú ý");
@@ -28,6 +32,7 @@ public abstract class Controller {
         invalidAlert.show();
     }
 
+    //Hiện thị thông báo khi ID thêm vào bị trùng
     public void popUpDuplicatedIDAlert(){
         Alert duplicatedId = new Alert(Alert.AlertType.INFORMATION);
         duplicatedId.setTitle("ID bị trùng");
@@ -36,6 +41,7 @@ public abstract class Controller {
         duplicatedId.show();
     }
 
+    //Hiển thị thông báo khi các trường bị thiếu
     public void popUpMissingFieldAlert(){
         Alert missingFieldAlert = new Alert(Alert.AlertType.INFORMATION);
         missingFieldAlert.setTitle("Chú ý!");
@@ -44,10 +50,10 @@ public abstract class Controller {
         missingFieldAlert.show();
     }
 
+    //Quay trở lại trang chủ , chuyển data trở lại trang chủ home
     public void troLai(ActionEvent event) throws IOException {
-        HopDongHolder holder = HopDongHolder.getInstance();
+        holder = HopDongHolder.getInstance();
         HopDong hopDong = holder.getHopDong();
-
         Stage stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/Home.fxml"));
