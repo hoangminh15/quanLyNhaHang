@@ -62,9 +62,9 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="maSanhLB" layoutX="893.0" layoutY="61.0" text="..." />
+      <Label fx:id="maSanhLB" layoutX="893.0" layoutY="61.0" />
       <TextField fx:id="donGiaText" layoutX="312.0" layoutY="346.0" prefHeight="26.0" prefWidth="141.0" />
       <Line endX="224.0" layoutX="721.0" layoutY="238.0" opacity="0.32" startX="-100.0" />
-      <Label fx:id="sucChuaLB" layoutX="776.0" layoutY="108.0" text="..." />
+      <Label fx:id="sucChuaLB" layoutX="776.0" layoutY="108.0" />
    </children>
 </AnchorPane>

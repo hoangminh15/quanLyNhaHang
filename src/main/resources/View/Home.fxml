@@ -65,7 +65,7 @@
             <Label layoutX="595.0" layoutY="35.0" text="Thời điểm: " />
             <ImageView fx:id="imageView" fitHeight="123.0" fitWidth="219.0" layoutX="578.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@sanh1.jpg" />
+                  <Image url="@sanh2.jpg" />
                </image>
             </ImageView>
             <Line endX="-79.5" endY="562.0" layoutX="957.0" layoutY="-166.0" opacity="0.21" startX="-79.5" startY="180.5" />

@@ -118,7 +118,7 @@ public class HomeController extends Controller implements Initializable {
         ArrayList<String> menuAL = menuAccessor.layDanhSach();
         ObservableList<String> menuList = FXCollections.observableArrayList(menuAL);
         menuCB.setItems(menuList);
-        //Set max width cho mon chinh tranh tràn textk
+        //Set max width cho mon chinh tranh tràn text
         monChinh.setMaxWidth(400);
         monChinh.setWrapText(true);
         dichVuDaChon.setMaxWidth(300);
