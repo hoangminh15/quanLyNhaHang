@@ -1,16 +1,7 @@
 package Model;
 
 public class HopDong extends Data{
-    private int id;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
+    private int idHopDong;
     private String ngayToChuc;
     private String thoiDiem;
     private String maSanh;
@@ -47,12 +38,12 @@ public class HopDong extends Data{
         this.dichVuDaChon = dichVuDaChon;
     }
 
-    public String getDichVuDaChon() {
-        return dichVuDaChon;
+    public int getIdHopDong() {
+        return idHopDong;
     }
 
-    public void setDichVuDaChon(String dichVuDaChon) {
-        this.dichVuDaChon = dichVuDaChon;
+    public void setIdHopDong(int idHopDong) {
+        this.idHopDong = idHopDong;
     }
 
     public String getNgayToChuc() {
@@ -149,5 +140,13 @@ public class HopDong extends Data{
 
     public void setGiaDichVu(String giaDichVu) {
         this.giaDichVu = giaDichVu;
+    }
+
+    public String getDichVuDaChon() {
+        return dichVuDaChon;
+    }
+
+    public void setDichVuDaChon(String dichVuDaChon) {
+        this.dichVuDaChon = dichVuDaChon;
     }
 }

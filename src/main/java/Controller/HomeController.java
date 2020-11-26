@@ -171,7 +171,6 @@ public class HomeController extends Controller implements Initializable {
         Sanh sanh = sanhAccessor.laySanhData(maSanhValue);
         maSanh.setText(maSanhValue);
         sucChua.setText(String.valueOf(sanh.getSucChua()));
-//        imageView.setImage(new Image("View/" + sanh.getImageLink()));
         int donGiaSanh = sanh.getDonGia();
         if (thoiDiemCB.getValue() != null){
             String thoiDiem = thoiDiemCB.getValue().toLowerCase();
@@ -341,9 +340,6 @@ public class HomeController extends Controller implements Initializable {
         }
 
         //In hop dong ra console
-        //check cac truong trong
-
-
         System.out.println("HỢP ĐỒNG ĐẶT TIỆC");
         System.out.println("Hợp đồng ngày " + ngayLapDon.getText());
         System.out.println("Nhân viên lập hợp đồng: " + nhanVien.getText());

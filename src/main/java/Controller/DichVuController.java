@@ -141,7 +141,6 @@ public class DichVuController extends Controller implements Initializable {
     public void troLai(ActionEvent event) throws IOException {
         HopDongHolder holder = HopDongHolder.getInstance();
         HopDong hopDong = holder.getHopDong();
-
         stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/Home.fxml"));

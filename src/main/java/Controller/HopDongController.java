@@ -33,11 +33,7 @@ public class HopDongController extends Controller implements Initializable {
     @FXML
     TableView<HopDong> table;
     @FXML
-    TableColumn<HopDong, Integer> idHopDong;
-    @FXML
-    TableColumn<HopDong, String> ngayLapHopDong;
-    @FXML
-    TableColumn<HopDong, String> donGia;
+    TableColumn<HopDong, String> ngayLapDon;
     @FXML
     TableColumn<HopDong, String> tenKhachHang;
     @FXML
@@ -86,12 +82,9 @@ public class HopDongController extends Controller implements Initializable {
             hopDongListTemp.add(hopDongAccessor.layHopDongData(Integer.parseInt(idHopDong)));
         }
         hopDongList = FXCollections.observableList(hopDongListTemp);
-        idHopDong.setCellValueFactory(new PropertyValueFactory<>("idHopDong"));
-        ngayLapHopDong.setCellValueFactory(new PropertyValueFactory<>("ngayLapHopDong"));
+        ngayLapDon.setCellValueFactory(new PropertyValueFactory<>("ngayLapDon"));
         tenKhachHang.setCellValueFactory(new PropertyValueFactory<>("tenKhachHang"));
-        donGia.setCellValueFactory(new PropertyValueFactory<>("donGia"));
         table.setItems(hopDongList);
-
     }
 
     public void troLai(ActionEvent event) throws IOException {
@@ -111,21 +104,19 @@ public class HopDongController extends Controller implements Initializable {
     public void xemHopDong(MouseEvent event){
         HopDong hopDongDuocChon = table.getSelectionModel().getSelectedItem();
         if(event.getClickCount() == 2 && (hopDongDuocChon != null)){
-            idLB.setText(String.valueOf(hopDongDuocChon.getId()));
+            idLB.setText(String.valueOf(hopDongDuocChon.getIdHopDong()));
             maSanhLB.setText(String.valueOf(hopDongDuocChon.getMaSanh()));
             thoiDiemLB.setText(hopDongDuocChon.getThoiDiem());
             ngayLapDonLB.setText(hopDongDuocChon.getNgayLapDon());
             ngayToChucLB.setText(hopDongDuocChon.getNgayToChuc());
             soMenuLB.setText(hopDongDuocChon.getSoMenu());
-            soBanLB.setText(hopDongDuocChon.getSoMenu());
+            soBanLB.setText(hopDongDuocChon.getSoBan());
             soKhachLB.setText(hopDongDuocChon.getSoKhach());
             nhanVienLB.setText(hopDongDuocChon.getNhanVien());
             tenKhachHangLB.setText(hopDongDuocChon.getTenKhachHang());
             diaChiLB.setText(hopDongDuocChon.getDiaChi());
             dienThoaiLB.setText(hopDongDuocChon.getDienThoai());
-            giaDichVuLB.setText(hopDongDuocChon.getGiaDichVu());
-            dichVuDaChonLB.setText(hopDongDuocChon.getDichVuDaChon());
-
+            dichVuDaChonLB.setText(hopDongDuocChon.getGiaDichVu());
         }
     }
 }
