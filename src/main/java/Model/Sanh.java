@@ -5,7 +5,6 @@ public class Sanh extends Data{
     private String maSanh;
     private int donGia;
     private int sucChua;
-    private String imageLink;
 
     public int getIdSanh() {
         return idSanh;
@@ -39,11 +38,4 @@ public class Sanh extends Data{
         this.sucChua = sucChua;
     }
 
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
-    }
 }

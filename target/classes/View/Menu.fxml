@@ -50,7 +50,7 @@
       <Label layoutX="652.0" layoutY="108.0" text="Khai vị:" />
       <Label layoutX="649.0" layoutY="193.0" text="Món chính:" />
       <Label layoutX="644.0" layoutY="351.0" text="Tráng miệng:" />
-      <Label fx:id="idLB" layoutX="685.0" layoutY="61.0" prefHeight="21.0" prefWidth="43.0">
+      <Label fx:id="idLB" layoutX="685.0" layoutY="59.0" prefHeight="21.0" prefWidth="43.0">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -60,7 +60,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label fx:id="donGiaLB1" layoutX="900.0" layoutY="59.0" prefHeight="21.0" prefWidth="28.0" text="đ">
+      <Label layoutX="893.0" layoutY="58.0" prefHeight="21.0" prefWidth="28.0" text="đ">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>

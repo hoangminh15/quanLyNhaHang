@@ -138,7 +138,7 @@ public class DichVuController extends Controller implements Initializable {
         tongTien = 0;
     }
 
-    public void submit(ActionEvent event) throws IOException {
+    public void troLai(ActionEvent event) throws IOException {
         HopDongHolder holder = HopDongHolder.getInstance();
         HopDong hopDong = holder.getHopDong();
 

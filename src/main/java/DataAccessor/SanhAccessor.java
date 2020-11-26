@@ -37,7 +37,6 @@ public class SanhAccessor extends DataAccessor implements iDataController{
         sanhSet.setDonGia(Integer.parseInt(rs.getString("donGia")));
         sanhSet.setMaSanh(rs.getString("maSanh"));
         sanhSet.setSucChua(Integer.parseInt(rs.getString("sucChua")));
-        sanhSet.setImageLink(rs.getString("imageLink"));
         return sanhSet;
     }
 

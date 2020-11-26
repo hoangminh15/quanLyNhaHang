@@ -1,6 +1,7 @@
 package Controller;
 
 import DataAccessor.DichVuAccessor;
+import DataAccessor.HopDongAccessor;
 import DataAccessor.MenuAccessor;
 import DataAccessor.SanhAccessor;
 import Helper.DateValidator;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
@@ -94,6 +96,7 @@ public class HomeController extends Controller implements Initializable {
 
     SanhAccessor sanhAccessor;
     MenuAccessor menuAccessor;
+    HopDongAccessor hopDongAccessor;
     DichVuAccessor dichVuAccessor;
     DateValidator dateValidator;
     boolean isSatOrSun;
@@ -249,6 +252,15 @@ public class HomeController extends Controller implements Initializable {
         stage.setScene(scene);
     }
 
+    public void xemHopDong(ActionEvent event) throws  IOException{
+        Stage stage = retrieveStage(event);
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("/View/HopDong.fxml"));
+        Parent hopDongViewParent = loader.load();
+        Scene scene = new Scene(hopDongViewParent);
+        stage.setScene(scene);
+    }
+
     public void setGiaDichVu(String tongGiaDichVu){
         String output = myFormatter.format(Integer.parseInt(tongGiaDichVu));
         giaDichVu.setText(output);
@@ -256,6 +268,7 @@ public class HomeController extends Controller implements Initializable {
 
 
     public void setBackHopDong(HopDong hopDong){
+        if (hopDong == null) return;
         if (hopDong.getNgayToChuc().equals("")) return;
         thoiGianDP.setValue(LocalDate.parse(hopDong.getNgayToChuc()));
         chonNgay();
@@ -289,12 +302,13 @@ public class HomeController extends Controller implements Initializable {
 
         String giaSanhThanhTien = giaSanh.getText();
         String giaMenuThanhTien = tongTienAn.getText();
-        if (giaSanhThanhTien.equals("") || giaMenu.equals("")){
+        if (giaSanhThanhTien.equals("") || giaMenuThanhTien.equals("")){
             Alert missingFieldAlert = new Alert(Alert.AlertType.INFORMATION);
             missingFieldAlert.setTitle("Chú ý");
-            missingFieldAlert.setHeaderText("Thông tin sảnh và menu là bắt buộc");
+            missingFieldAlert.setHeaderText("Các trường thông tin chưa đầy đủ");
             missingFieldAlert.setContentText("Vui lòng xem lại");
             missingFieldAlert.show();
+            return;
         }
 
         sanhThanhTienLB.setText(giaSanhThanhTien);
@@ -311,10 +325,54 @@ public class HomeController extends Controller implements Initializable {
 
     public void inHopDong(){
         //Save hop dong vao database
+        //Luu data vao data object HopDong
+        thanhTien();
+        if (ngayLapDon.getText().equals("") || nhanVien.getText().equals("") || tenKhachHang.getText().equals("") || diaChi.getText().equals("") || dienThoai.getText().equals("") || ngayToChuc.getText().equals("") || tongThanhTienLB.getText().equals("") || maSanh.getText().equals("") || sucChua.getText().equals("") || giaSanh.getText().equals("") || soMenu.getText().equals("") || giaMenu.getText().equals("") || khaiVi.getText().equals("") || monChinh.getText().equals("") || trangMieng.getText().equals("") || tongTienAn.getText().equals("")){
+            popUpMissingFieldAlert();
+            return;
+        }
+        hopDongAccessor = new HopDongAccessor();
+        holdDataBetweenPage();
+        HopDong hopDongDeSave = holder.getHopDong();
+        try {
+            hopDongAccessor.themHopDong(hopDongDeSave);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
 
         //In hop dong ra console
+        //check cac truong trong
 
+
+        System.out.println("HỢP ĐỒNG ĐẶT TIỆC");
+        System.out.println("Hợp đồng ngày " + ngayLapDon.getText());
+        System.out.println("Nhân viên lập hợp đồng: " + nhanVien.getText());
+        System.out.println("Tên khách hàng: " + tenKhachHang.getText());
+        System.out.println("Địa chỉ: " + diaChi.getText());
+        System.out.println("Điện thoại: " + dienThoai.getText());
+        System.out.println("Ngày tổ chức tiệc: " + ngayToChuc.getText());
+        System.out.println("TỔNG THANH TOÁN: " + tongThanhTienLB.getText() + "\n");
+
+        System.out.println("THÔNG TIN SẢNH ");
+        System.out.println("Mã sảnh: " + maSanh.getText());
+        System.out.println("Sức chứa: " + sucChua.getText());
+        System.out.println("Đơn giá sảnh: " + giaSanh.getText() + "\n");
+
+        System.out.println("THÔNG TIN MENU ");
+        System.out.println("Menu số: " + soMenu.getText());
+        System.out.println("Số lượng khách: " + Integer.parseInt(soBanText.getText())*Integer.parseInt(soKhachMotBanText.getText()));
+        System.out.println("Đơn giá: " + giaMenu.getText());
+        System.out.println("Khai vị: " + khaiVi.getText());
+        System.out.println("Món chính: " + monChinh.getText());
+        System.out.println("Tráng miệng: " + trangMieng.getText());
+        System.out.println("Tổng tiền ăn: " + tongTienAn.getText() + "\n");
+
+        System.out.println("THÔNG TIN DỊCH VỤ: ");
+        System.out.println("Dịch vụ đã chọn: " + dichVuDaChon.getText());
+        System.out.println("Tổng giá dịch vụ: " + giaDichVu.getText());
     }
+
+
 
     public int formatBackToInt(String s){
         String[] stringArray = s.split(",");
@@ -322,7 +380,7 @@ public class HomeController extends Controller implements Initializable {
         for (String e : stringArray){
             output += e;
         }
-        int outputInt = Integer.parseInt(output);
+        int outputInt = Integer.parseInt(output.trim());
         return outputInt;
     }
 

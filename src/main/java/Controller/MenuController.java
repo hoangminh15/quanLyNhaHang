@@ -32,7 +32,12 @@ public class MenuController extends Controller implements Initializable {
     @FXML
     TableColumn<Menu, Integer> idMenu;
     @FXML
+    TableColumn<Menu, String> maSanh;
+    @FXML
+    TableColumn<Menu, Integer> sucChua;
+    @FXML
     TableColumn<Menu, Integer> donGia;
+
     @FXML
     TextField khaiViText;
     @FXML
@@ -123,6 +128,12 @@ public class MenuController extends Controller implements Initializable {
 
     public void xoa(){
         Menu menuBiXoa = table.getSelectionModel().getSelectedItem();
+        if (menuBiXoa == null) {
+            Alert nonSelectedAlert = new Alert(Alert.AlertType.INFORMATION);
+            nonSelectedAlert.setTitle("Chú ý!");
+            nonSelectedAlert.setHeaderText("Bạn cần chọn menu để xóa ");
+            return;
+        }
         menuList.remove(menuBiXoa);
         menuAccessor.xoa(menuBiXoa);
     }

@@ -1,6 +1,16 @@
 package Model;
 
-public class HopDong {
+public class HopDong extends Data{
+    private int id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     private String ngayToChuc;
     private String thoiDiem;
     private String maSanh;
