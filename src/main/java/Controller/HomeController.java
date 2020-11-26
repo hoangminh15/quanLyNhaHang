@@ -93,12 +93,12 @@ public class HomeController extends Controller implements Initializable {
     @FXML
     Label dichVuThanhTienLB;
 
-    SanhAccessor sanhAccessor;
-    MenuAccessor menuAccessor;
-    HopDongAccessor hopDongAccessor;
-    DateValidator dateValidator;
-    boolean isSatOrSun;
-    HopDongHolder holder;
+    private SanhAccessor sanhAccessor;
+    private MenuAccessor menuAccessor;
+    private HopDongAccessor hopDongAccessor;
+    private DateValidator dateValidator;
+    private boolean isSatOrSun;
+    private HopDongHolder holder;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

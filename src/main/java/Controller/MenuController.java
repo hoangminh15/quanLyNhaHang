@@ -46,10 +46,10 @@ public class MenuController extends Controller implements Initializable {
     Label monChinhLB;
     @FXML
     Label trangMiengLB;
-    ObservableList<Menu> menuList;
-    Stage stage;
-    MenuAccessor menuAccessor;
-    ArrayList<String> danhSachIDMenu;
+
+    private ObservableList<Menu> menuList;
+    private MenuAccessor menuAccessor;
+    private ArrayList<String> danhSachIDMenu;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

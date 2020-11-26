@@ -56,9 +56,9 @@ public class HopDongController extends Controller implements Initializable {
     Label dichVuDaChonLB;
 
 
-    ObservableList<HopDong> hopDongList;
-    HopDongAccessor hopDongAccessor;
-    ArrayList<String> danhSachIdHopDong;
+    private ObservableList<HopDong> hopDongList;
+    private HopDongAccessor hopDongAccessor;
+    private ArrayList<String> danhSachIdHopDong;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

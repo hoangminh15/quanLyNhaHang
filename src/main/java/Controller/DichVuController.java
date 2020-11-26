@@ -48,10 +48,10 @@ public class DichVuController extends Controller implements Initializable {
     Label tongTienLabel;
 
     private ObservableList<DichVu> dichVuList;
-    DichVuAccessor dichVuAccessor;
-    ArrayList<String> danhSachIdDichVu;
-    long tongTien = 0;
-    Stage stage;
+    private DichVuAccessor dichVuAccessor;
+    private ArrayList<String> danhSachIdDichVu;
+    private long tongTien = 0;
+    private Stage stage;
 
     //Giống với constructor ; method này được chạy khi controller được khởi tạo
     @Override

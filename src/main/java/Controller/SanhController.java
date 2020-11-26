@@ -44,8 +44,6 @@ public class SanhController extends Controller implements Initializable {
     @FXML
     TextField sucChuaText;
     @FXML
-    TextField maSanhText;
-    @FXML
     TextField donGiaText;
     @FXML
     Label idLB;
@@ -56,10 +54,10 @@ public class SanhController extends Controller implements Initializable {
     @FXML
     Label donGiaLB;
 
-    ObservableList<Sanh> sanhList;
-    Stage stage;
-    SanhAccessor sanhAccessor;
-    ArrayList<String> danhSachMaSanh;
+    private ObservableList<Sanh> sanhList;
+    private Stage stage;
+    private SanhAccessor sanhAccessor;
+    private ArrayList<String> danhSachMaSanh;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -102,18 +100,28 @@ public class SanhController extends Controller implements Initializable {
             return;
         }
         danhSachMaSanh = sanhAccessor.layDanhSach();
-        if (danhSachMaSanh.contains(idText.getText())){
-            popUpDuplicatedIDAlert();
-            return;
-        }
-        if(idText.getText().equals("") || maSanhText.getText().equals("") || sucChuaText.getText().equals("") || donGiaText.getText().equals("") || donGiaText.getText().equals("")){
+
+        if(idText.getText().equals("") || sucChuaText.getText().equals("") || donGiaText.getText().equals("") || donGiaText.getText().equals("")){
             popUpMissingFieldAlert();
             return;
         } else {
             Sanh sanhData = new Sanh();
-            sanhData.setIdSanh(Integer.parseInt(idText.getText()));
+            int id = Integer.parseInt(idText.getText());
+            String maSanhToBeInserted = "";
+            if (id < 10) {
+                maSanhToBeInserted += "S00" + id;
+            } else if (id < 100){
+                maSanhToBeInserted = "S0" + id;
+            } else if (id < 1000){
+                maSanhToBeInserted = "S" + id;
+            }
+            if (danhSachMaSanh.contains(maSanhToBeInserted)){
+                popUpDuplicatedIDAlert();
+                return;
+            }
+            sanhData.setIdSanh(id);
             sanhData.setDonGia(Integer.parseInt(donGiaText.getText()));
-            sanhData.setMaSanh(maSanhText.getText());
+            sanhData.setMaSanh(maSanhToBeInserted);
             sanhData.setSucChua(Integer.parseInt(sucChuaText.getText()));
             sanhAccessor.them(sanhData);
             sanhList.add(sanhData);

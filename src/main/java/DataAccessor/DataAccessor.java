@@ -12,7 +12,7 @@ import java.util.List;
 public abstract class DataAccessor {
 
     static final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost:3306/StockData";
+    static final String DB_URL = "jdbc:mysql://localhost:3306/NhaHang";
 
     //Database credentials
     static final String USERNAME = "root";
