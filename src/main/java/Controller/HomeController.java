@@ -99,11 +99,12 @@ public class HomeController extends Controller implements Initializable {
     private DateValidator dateValidator;
     private boolean isSatOrSun;
     private HopDongHolder holder;
+    DateFormat dateFormat;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Set ngay lap don
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         ngayLapDon.setText(dateFormat.format(date));
 
@@ -132,7 +133,8 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //Listener cho menuCB
-    public void xemMenu(){
+    public void xemMenu() {
+        if(menuCB.getSelectionModel().isEmpty()) return;
         int idMenu = Integer.parseInt(menuCB.getValue());
         Menu menu = menuAccessor.layMenuData(idMenu);
         int donGiaMenu = menu.getDonGia();
@@ -143,10 +145,10 @@ public class HomeController extends Controller implements Initializable {
         String donGiaMenuOutput = myFormatter.format(donGiaMenu);
         giaMenu.setText(donGiaMenuOutput);
 
-        if (!soBanText.getText().equals("") && !soKhachMotBanText.getText().equals("")){
+        if (!soBanText.getText().equals("") && !soKhachMotBanText.getText().equals("")) {
             int soBan = Integer.parseInt(soBanText.getText());
             int soKhachMotBan = Integer.parseInt(soKhachMotBanText.getText());
-            int tongTienAnValue = donGiaMenu *  soBan * soKhachMotBan;
+            int tongTienAnValue = donGiaMenu * soBan * soKhachMotBan;
 
             String tongTienAnOutput = myFormatter.format(tongTienAnValue);
             tongTienAn.setText(tongTienAnOutput);
@@ -154,31 +156,37 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //gọi tới xemMenu() khi số bàn được điền
-    public void dienSoBan(){
-        xemMenu();
+    public void dienSoBan() {
+        if(!soBanText.getText().isBlank()){
+            xemMenu();
+        }
+
     }
 
     //gọi tới xemMenu() khi số khách được điền
-    public void dienSoKhach(){
-        xemMenu();
+    public void dienSoKhach() {
+        if(!soKhachMotBanText.getText().isBlank()){
+            xemMenu();
+        }
     }
 
     //Listener cho sanhCB
-    public void xemSanh(){
+    public void xemSanh() {
+        if(maSanhCB.getSelectionModel().isEmpty()) return;
         String maSanhValue = maSanhCB.getValue();
         Sanh sanh = sanhAccessor.laySanhData(maSanhValue);
         maSanh.setText(maSanhValue);
         sucChua.setText(String.valueOf(sanh.getSucChua()));
         int donGiaSanh = sanh.getDonGia();
-        if (thoiDiemCB.getValue() != null){
+        if (thoiDiemCB.getValue() != null) {
             String thoiDiem = thoiDiemCB.getValue().toLowerCase();
-            if (thoiDiem.equals("sáng")){
-                donGiaSanh = (int) (donGiaSanh*0.8);
-            } else if(thoiDiem.equals("chiều")){
-                donGiaSanh = (int) (donGiaSanh*0.85);
+            if (thoiDiem.equals("sáng")) {
+                donGiaSanh = (int) (donGiaSanh * 0.8);
+            } else if (thoiDiem.equals("chiều")) {
+                donGiaSanh = (int) (donGiaSanh * 0.85);
             }
-            if (isSatOrSun){
-                donGiaSanh = (int) (donGiaSanh*1.1);
+            if (isSatOrSun) {
+                donGiaSanh = (int) (donGiaSanh * 1.1);
             }
         }
 
@@ -187,24 +195,25 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //Listener cho thoiDiemCB
-    public void chonThoiDiem(){
+    public void chonThoiDiem() {
+        if(thoiDiemCB.getSelectionModel().isEmpty()) return;
         thoiDiem.setText(thoiDiemCB.getValue().toLowerCase());
-        if (maSanhCB.getValue() != null){
+        if (!maSanhCB.getValue().isBlank()) {
             xemSanh();
         }
     }
 
     //Listener cho DatePickerDP
-    public void chonNgay(){
+    public void chonNgay() {
         LocalDate localDate = thoiGianDP.getValue();
         //Kiểm tra ngày liệu có phải thứ 7 + CN
         int dayOfWeekByInt = dateValidator.findDayOfWeek(localDate.getDayOfMonth(), localDate.getMonthValue(), localDate.getYear());
-        if (dayOfWeekByInt == 0 || dayOfWeekByInt == 6){
+        if (dayOfWeekByInt == 0 || dayOfWeekByInt == 6) {
             isSatOrSun = true;
         } else {
             isSatOrSun = false;
         }
-        if(maSanhCB.getValue() != null){
+        if (maSanhCB.getValue() != "") {
             xemSanh();
         }
         ngayToChuc.setText(thoiGianDP.getValue().toString());
@@ -222,7 +231,7 @@ public class HomeController extends Controller implements Initializable {
         holdDataBetweenPage();
 
         DichVuController dichVuController = loader.getController();
-        if(!dichVuDaChon.getText().equals("") && !dichVuDaChon.getText().equals("")){
+        if (!dichVuDaChon.getText().equals("") && !dichVuDaChon.getText().equals("")) {
             dichVuController.setDichVuDaChon(dichVuDaChon.getText());
             dichVuController.setTongDichVu(giaDichVu.getText().trim());
         }
@@ -230,7 +239,7 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //Chuyển scene sang home
-    public void changeSceneMenu(ActionEvent event) throws IOException{
+    public void changeSceneMenu(ActionEvent event) throws IOException {
         Stage stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/Menu.fxml"));
@@ -241,7 +250,7 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //Chuyển scene sang "sảnh"
-    public void changeSceneSanh(ActionEvent event) throws IOException{
+    public void changeSceneSanh(ActionEvent event) throws IOException {
         Stage stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/Sanh.fxml"));
@@ -251,7 +260,7 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //Chuyển scene sang "xem hợp đồng"
-    public void xemHopDong(ActionEvent event) throws  IOException{
+    public void xemHopDong(ActionEvent event) throws IOException {
         Stage stage = retrieveStage(event);
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("/View/HopDong.fxml"));
@@ -261,14 +270,14 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //set giá dịch vụ (phục vụ cho method khác)
-    public void setGiaDichVu(String tongGiaDichVu){
+    public void setGiaDichVu(String tongGiaDichVu) {
         String output = myFormatter.format(Integer.parseInt(tongGiaDichVu));
         giaDichVu.setText(output);
     }
 
 
     //Set lại data toàn bộ home page khi chuyển trở lại home page
-    public void setBackHopDong(HopDong hopDong){
+    public void setBackHopDong(HopDong hopDong) {
         if (hopDong == null) return;
         if (hopDong.getNgayToChuc().equals("")) return;
         thoiGianDP.setValue(LocalDate.parse(hopDong.getNgayToChuc()));
@@ -291,10 +300,10 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //Thành tiền
-    public void thanhTien(){
+    public void thanhTien() {
         String giaDichVuThanhTien;
         int giaDichVuValue;
-        if (giaDichVu.getText().equals("")){
+        if (giaDichVu.getText().equals("")) {
             giaDichVuThanhTien = "0";
             giaDichVuValue = 0;
         } else {
@@ -304,7 +313,7 @@ public class HomeController extends Controller implements Initializable {
 
         String giaSanhThanhTien = giaSanh.getText();
         String giaMenuThanhTien = tongTienAn.getText();
-        if (giaSanhThanhTien.equals("") || giaMenuThanhTien.equals("")){
+        if (giaSanhThanhTien.equals("") || giaMenuThanhTien.equals("")) {
             Alert missingFieldAlert = new Alert(Alert.AlertType.INFORMATION);
             missingFieldAlert.setTitle("Chú ý");
             missingFieldAlert.setHeaderText("Các trường thông tin chưa đầy đủ");
@@ -326,14 +335,14 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //In hợp đồng ra console , đồng thời lưu vào database
-    public void inHopDong(){
+    public void inHopDong() {
         //Save hop dong vao database
         //Luu data vao data object HopDong
         thanhTien();
-        if (ngayLapDon.getText().equals("") || nhanVien.getText().equals("") || tenKhachHang.getText().equals("") || diaChi.getText().equals("") || dienThoai.getText().equals("") || ngayToChuc.getText().equals("") || tongThanhTienLB.getText().equals("") || maSanh.getText().equals("") || sucChua.getText().equals("") || giaSanh.getText().equals("") || soMenu.getText().equals("") || giaMenu.getText().equals("") || khaiVi.getText().equals("") || monChinh.getText().equals("") || trangMieng.getText().equals("") || tongTienAn.getText().equals("")){
-            popUpMissingFieldAlert();
-            return;
-        }
+//        if (ngayLapDon.getText().equals("") || nhanVien.getText().equals("") || tenKhachHang.getText().equals("") || diaChi.getText().equals("") || dienThoai.getText().equals("") || ngayToChuc.getText().equals("") || tongThanhTienLB.getText().equals("") || maSanh.getText().equals("") || sucChua.getText().equals("") || giaSanh.getText().equals("") || soMenu.getText().equals("") || giaMenu.getText().equals("") || khaiVi.getText().equals("") || monChinh.getText().equals("") || trangMieng.getText().equals("") || tongTienAn.getText().equals("")) {
+//            popUpMissingFieldAlert();
+//            return;
+//        }
         hopDongAccessor = new HopDongAccessor();
         holdDataBetweenPage();
         HopDong hopDongDeSave = holder.getHopDong();
@@ -360,7 +369,7 @@ public class HomeController extends Controller implements Initializable {
 
         System.out.println("THÔNG TIN MENU ");
         System.out.println("Menu số: " + soMenu.getText());
-        System.out.println("Số lượng khách: " + Integer.parseInt(soBanText.getText())*Integer.parseInt(soKhachMotBanText.getText()));
+        System.out.println("Số lượng khách: " + Integer.parseInt(soBanText.getText()) * Integer.parseInt(soKhachMotBanText.getText()));
         System.out.println("Đơn giá: " + giaMenu.getText());
         System.out.println("Khai vị: " + khaiVi.getText());
         System.out.println("Món chính: " + monChinh.getText());
@@ -370,13 +379,48 @@ public class HomeController extends Controller implements Initializable {
         System.out.println("THÔNG TIN DỊCH VỤ: ");
         System.out.println("Dịch vụ đã chọn: " + dichVuDaChon.getText());
         System.out.println("Tổng giá dịch vụ: " + giaDichVu.getText());
+        //Reset tất cả các trường trong hợp đồng
+        resetHopDong();
+    }
+
+    //Được gọi ở trong method thanhTien();
+    public void resetHopDong() {
+        thoiGianDP.getEditor().clear();
+        thoiDiemCB.setValue(null);
+        maSanhCB.setValue(null);
+        menuCB.setValue(null);
+        soBanText.setText(null);
+        soKhachMotBanText.setText(null);
+        thoiDiem.setText("");
+        ngayToChuc.setText("");
+        thoiDiem.setText("");
+        maSanh.setText("");
+        sucChua.setText("");
+        giaSanh.setText("");
+        khaiVi.setText("");
+        monChinh.setText("");
+        trangMieng.setText("");
+        giaMenu.setText("");
+        tongTienAn.setText("");
+        dichVuDaChon.setText("");
+        giaDichVu.setText("");
+        nhanVien.setText("");
+        tenKhachHang.setText("");
+        diaChi.setText("");
+        dienThoai.setText("");
+        Date date = new Date();
+        ngayLapDon.setText(dateFormat.format(date));
+        sanhThanhTienLB.setText("");
+        menuThanhTienLB.setText("");
+        dichVuThanhTienLB.setText("");
+        tongThanhTienLB.setText("");
     }
 
     //Format lại giá tiền dạng dễ đọc quay trở lại kiểu Integer để phục vụ tính toán
-    public int formatBackToInt(String s){
+    public int formatBackToInt(String s) {
         String[] stringArray = s.split(",");
         String output = "";
-        for (String e : stringArray){
+        for (String e : stringArray) {
             output += e;
         }
         int outputInt = Integer.parseInt(output.trim());
@@ -384,7 +428,7 @@ public class HomeController extends Controller implements Initializable {
     }
 
     //Phục vụ chuyển data giữa các page
-    public void holdDataBetweenPage(){
+    public void holdDataBetweenPage() {
         holder = HopDongHolder.getInstance();
         holder.setHopDong(new HopDong(ngayToChuc.getText(), thoiDiem.getText(), maSanh.getText(), soMenu.getText(), soBanText.getText(), soKhachMotBanText.getText(), nhanVien.getText(), tenKhachHang.getText(), diaChi.getText(), dienThoai.getText(), ngayLapDon.getText(), giaDichVu.getText(), dichVuDaChon.getText()));
     }

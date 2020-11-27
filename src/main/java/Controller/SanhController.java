@@ -85,7 +85,16 @@ public class SanhController extends Controller implements Initializable {
             popUpInvalidAlert();
             return;
         }
-        danhSachMaSanh = sanhAccessor.layDanhSach();
+
+        //Check sức chứa tối đa phải <= 35
+        if(Integer.parseInt(sucChuaText.getText()) > 35){
+            Alert outOfLimitAlert = new Alert(Alert.AlertType.INFORMATION);
+            outOfLimitAlert.setTitle("Chú ý");
+            outOfLimitAlert.setHeaderText("Sức chứa tối đa của mỗi sảnh là 35 bàn");
+            outOfLimitAlert.setContentText("Vui lòng nhập lại");
+            outOfLimitAlert.show();
+            return;
+        }
 
         if(idText.getText().equals("") || sucChuaText.getText().equals("") || donGiaText.getText().equals("") || donGiaText.getText().equals("")){
             popUpMissingFieldAlert();
@@ -101,6 +110,7 @@ public class SanhController extends Controller implements Initializable {
             } else if (id < 1000){
                 maSanhToBeInserted = "S" + id;
             }
+            danhSachMaSanh = sanhAccessor.layDanhSach();
             if (danhSachMaSanh.contains(maSanhToBeInserted)){
                 popUpDuplicatedIDAlert();
                 return;

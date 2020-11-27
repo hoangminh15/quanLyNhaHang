@@ -60,7 +60,7 @@
             <Font name="System Bold Italic" size="13.0" />
          </font>
       </Label>
-      <Label layoutX="893.0" layoutY="58.0" prefHeight="21.0" prefWidth="28.0" text="đ">
+      <Label layoutX="893.0" layoutY="60.0" prefHeight="21.0" prefWidth="28.0" text="đ">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font>
@@ -68,5 +68,6 @@
       <Label fx:id="khaiViLB" layoutX="639.0" layoutY="135.0" />
       <Label fx:id="monChinhLB" layoutX="636.0" layoutY="224.0" />
       <Label fx:id="trangMiengLB" layoutX="633.0" layoutY="382.0" />
+      <Label layoutX="501.0" layoutY="302.0" text="đồng" />
    </children>
 </AnchorPane>

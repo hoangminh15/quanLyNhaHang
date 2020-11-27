@@ -95,7 +95,7 @@
             <Label layoutX="551.0" layoutY="616.0" text="Giá:" />
             <Label layoutX="733.0" layoutY="616.0" prefHeight="16.0" prefWidth="49.0" text="đồng" />
             <Label fx:id="giaDichVu" layoutX="639.0" layoutY="616.0" />
-            <Label fx:id="thoiDiem" layoutX="722.0" layoutY="34.0" text="..." />
+            <Label fx:id="thoiDiem" layoutX="722.0" layoutY="36.0" text="..." />
             <Label layoutX="551.0" layoutY="462.0" text="Tổng" />
             <Label layoutX="733.0" layoutY="462.0" prefHeight="16.0" prefWidth="108.0" text="đồng" />
             <Label fx:id="tongTienAn" layoutX="639.0" layoutY="462.0" />

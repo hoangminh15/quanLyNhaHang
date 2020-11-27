@@ -16,7 +16,7 @@
             <TableColumn fx:id="idSanh" prefWidth="131.0" text="ID" />
             <TableColumn fx:id="maSanh" prefWidth="130.0" text="Mã sảnh" />
             <TableColumn fx:id="sucChua" prefWidth="120.0" text="Sức chứa" />
-            <TableColumn fx:id="donGia" prefWidth="238.0" text="Đơn giá" />
+            <TableColumn fx:id="donGia" prefWidth="238.0" text="Đơn giá (đồng)" />
          </columns>
       </TableView>
       <Label layoutX="165.0" layoutY="256.0" text="THÊM SẢNH">
@@ -64,5 +64,6 @@
       <TextField fx:id="donGiaText" layoutX="312.0" layoutY="296.0" prefHeight="26.0" prefWidth="141.0" />
       <Line endX="224.0" layoutX="721.0" layoutY="238.0" opacity="0.32" startX="-100.0" />
       <Label fx:id="sucChuaLB" layoutX="776.0" layoutY="108.0" />
+      <Label layoutX="196.0" layoutY="350.0" text="(Tối đa 35 bàn)" />
    </children>
 </AnchorPane>
