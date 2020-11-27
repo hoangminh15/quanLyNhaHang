@@ -161,6 +161,27 @@ public class HomeController extends Controller implements Initializable {
             xemMenu();
         }
 
+        //check so ban nhap vao lieu co vuot qua suc chua toi da
+        if(sucChua.getText().equals("")) {
+            Alert sanhIsNotSelectedAlert = new Alert(Alert.AlertType.INFORMATION);
+            sanhIsNotSelectedAlert.setTitle("Chú ý");
+            sanhIsNotSelectedAlert.setHeaderText("Bạn cần chọn sảnh trước");
+            sanhIsNotSelectedAlert.setContentText("Vui lòng chọn sảnh");
+            sanhIsNotSelectedAlert.show();
+            soBanText.setText("");
+            return;
+        }
+        if(soBanText.getText().isBlank()){
+            return;
+        } else if(Integer.parseInt(soBanText.getText()) > Integer.parseInt(sucChua.getText())){
+            Alert outOfLimitAlert = new Alert(Alert.AlertType.INFORMATION);
+            outOfLimitAlert.setTitle("Chú ý");
+            outOfLimitAlert.setHeaderText("Sức chứa tối đa của mỗi sảnh là 35 bàn");
+            outOfLimitAlert.setContentText("Vui lòng nhập lại");
+            outOfLimitAlert.show();
+            return;
+        }
+
     }
 
     //gọi tới xemMenu() khi số khách được điền

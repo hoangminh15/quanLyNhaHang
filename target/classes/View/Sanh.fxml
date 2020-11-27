@@ -64,6 +64,5 @@
       <TextField fx:id="donGiaText" layoutX="312.0" layoutY="296.0" prefHeight="26.0" prefWidth="141.0" />
       <Line endX="224.0" layoutX="721.0" layoutY="238.0" opacity="0.32" startX="-100.0" />
       <Label fx:id="sucChuaLB" layoutX="776.0" layoutY="108.0" />
-      <Label layoutX="196.0" layoutY="350.0" text="(Tối đa 35 bàn)" />
    </children>
 </AnchorPane>
