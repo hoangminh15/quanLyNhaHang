@@ -111,6 +111,9 @@ public class SanhController extends Controller implements Initializable {
             sanhData.setSucChua(Integer.parseInt(sucChuaText.getText()));
             sanhAccessor.them(sanhData);
             sanhList.add(sanhData);
+            idText.setText("");
+            donGiaText.setText("");
+            sucChuaText.setText("");
         }
     }
 

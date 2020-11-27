@@ -124,6 +124,9 @@ public class DichVuController extends Controller implements Initializable {
             dichVuData.setTenDichVu(tenDichVuThem.getText());
             dichVuAccessor.them(dichVuData);
             dichVuList.add(dichVuData);
+            idThem.setText("");
+            donGiaThem.setText("");
+            tenDichVuThem.setText("");
         }
     }
 

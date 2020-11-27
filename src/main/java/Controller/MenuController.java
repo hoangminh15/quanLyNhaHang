@@ -96,6 +96,11 @@ public class MenuController extends Controller implements Initializable {
             MenuData.setTrangmieng(trangMiengText.getText());
             menuAccessor.them(MenuData);
             menuList.add(MenuData);
+            idText.setText("");
+            donGiaText.setText("");
+            khaiViText.setText("");
+            monChinhText.setText("");
+            trangMiengText.setText("");
         }
     }
 

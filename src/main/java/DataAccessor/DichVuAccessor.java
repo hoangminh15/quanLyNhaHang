@@ -48,7 +48,7 @@ public class DichVuAccessor extends DataAccessor implements iDataController {
         DichVu dichVuObject = (DichVu) dichVuData;
         int idDichVu = dichVuObject.getIdDichVu();
         String tenDichVu = dichVuObject.getTenDichVu();
-        int donGia = dichVu.getDonGia();
+        int donGia = dichVuObject.getDonGia();
         String sql = "INSERT INTO NhaHang.DichVu VALUES ('" + idDichVu + "', '" + tenDichVu + "', '" + donGia + "')";
         statement.executeUpdate(sql);
     }
