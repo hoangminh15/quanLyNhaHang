@@ -197,8 +197,16 @@ public class HomeController extends Controller implements Initializable {
     //Listener cho thoiDiemCB
     public void chonThoiDiem() {
         if(thoiDiemCB.getSelectionModel().isEmpty()) return;
-        thoiDiem.setText(thoiDiemCB.getValue().toLowerCase());
-        if (!maSanhCB.getValue().isBlank()) {
+        String output = thoiDiemCB.getValue().toLowerCase();
+        if (output.equals("sáng")) {
+            output += " (8h - 12h)";
+        } else if (output.equals("chiều")) {
+            output += " (13h - 17h)";
+        } else if (output.equals("tối")){
+            output += " (18h - 22h)";
+        }
+        thoiDiem.setText(output);
+        if (!maSanhCB.getSelectionModel().isEmpty()) {
             xemSanh();
         }
     }
