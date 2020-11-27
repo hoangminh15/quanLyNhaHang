@@ -168,7 +168,6 @@ public class HomeController extends Controller implements Initializable {
             sanhIsNotSelectedAlert.setHeaderText("Bạn cần chọn sảnh trước");
             sanhIsNotSelectedAlert.setContentText("Vui lòng chọn sảnh");
             sanhIsNotSelectedAlert.show();
-            soBanText.setText("");
             return;
         }
         if(soBanText.getText().isBlank()){
@@ -179,6 +178,7 @@ public class HomeController extends Controller implements Initializable {
             outOfLimitAlert.setHeaderText("Sức chứa tối đa của mỗi sảnh là 35 bàn");
             outOfLimitAlert.setContentText("Vui lòng nhập lại");
             outOfLimitAlert.show();
+            soBanText.setText("");
             return;
         }
 
