@@ -175,7 +175,7 @@ public class HomeController extends Controller implements Initializable {
         } else if(Integer.parseInt(soBanText.getText()) > Integer.parseInt(sucChua.getText())){
             Alert outOfLimitAlert = new Alert(Alert.AlertType.INFORMATION);
             outOfLimitAlert.setTitle("Chú ý");
-            outOfLimitAlert.setHeaderText("Sức chứa tối đa của mỗi sảnh là 35 bàn");
+            outOfLimitAlert.setHeaderText("Sức chứa tối đa của mỗi sảnh là " + sucChua.getText() + " bàn");
             outOfLimitAlert.setContentText("Vui lòng nhập lại");
             outOfLimitAlert.show();
             soBanText.setText("");
